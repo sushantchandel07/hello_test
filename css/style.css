@@ -1,0 +1,599 @@
+* {
+  margin: 0%;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+/* +++++++++++++++++++++++++navbar style++++++++++++++++++++++++++++++ */
+.navbar {
+  background-color: rgb(9, 22, 43);
+  color: rgb(182, 178, 178);
+  height: 120px;
+}
+
+.navbar .nav-logo img {
+  width: 150px;
+  margin-left: 15px;
+}
+
+.navbar .navbar-toggler {
+  display: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 24px;
+}
+
+.navbar .navbar-toggler:focus {
+  outline: none;
+}
+
+.navbar .offcanvas-header,
+.navbar .offcanvas-body {
+  background-color: rgb(9, 22, 43);
+  color: rgb(182, 178, 178);
+}
+
+.navbar .navbar-nav {
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.navbar .Home a,
+.navbar .About a,
+.navbar .profile,
+.navbar .login,
+.navbar .signup {
+  padding-right: 20px;
+  color: rgb(182, 178, 178);
+  text-decoration: none;
+}
+
+.navbar .Home a {
+  padding-left: 20px;
+}
+
+.navbar .login,
+.navbar .signup,
+.navbar .profile {
+  display: inline-block;
+}
+
+.navbar .login {
+  margin-right: 20px;
+  background-color: rgb(56, 146, 187);
+  width: 120px;
+  text-align: center;
+}
+
+.navbar .nav-side-list {
+  margin-right: 90px;
+}
+
+
+
+/* ++++++++++++++++++++++++++++++++++++++ */
+.font-size {
+  font-size: 20px;
+}
+.pointer {
+  cursor: pointer;
+}
+/* ++++++++++++++++++++++++++++++++++++++++ */
+
+/*++++++++++++++main page header css+++++++++++ */
+header {
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+/*  main index page css */
+
+/*++++++++++ main background image which sets in index file+++++++++++++++++ */
+.main-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* +++++++++++++++++++index page css +++++++++++++++++++++=*/
+.container-fluid.navbar {
+  padding: 20px;
+}
+
+/* stting the car image on index file  */
+img.secondary-img {
+  width: 800px;
+  position: absolute;
+  top: 20%;
+  right: 0;
+  transform: translate(0, 10%);
+  z-index: 1;
+}
+
+/* setting the content over the image in index file */
+.content-overlay {
+  position: absolute;
+  top: 30%;
+  left: 0%;
+  width: 50%;
+  padding: 20px;
+  z-index: 1;
+  color: white;
+}
+
+.header-heading {
+  font-size: 70px;
+}
+
+/* setting the button on the header */
+.header-button {
+  margin-top: 0px;
+  padding: 10px;
+  font-size: large;
+  font-weight: 600;
+  border-radius: 3px;
+  width: 170px;
+  border: none;
+  background-image: linear-gradient(
+    45deg,
+    rgb(122, 190, 245),
+    rgb(9, 123, 216)
+  );
+}
+.header-button a {
+  color: white;
+  text-decoration: none;
+}
+
+.login a{
+  color: white;
+  text-decoration: none;
+}
+/* signup  button*/
+.signup a {
+  text-align: center;
+
+  color: white;
+  text-decoration: none;
+}
+.profile a {
+  text-decoration: none;
+  color: rgb(182, 178, 178);
+}
+
+/* ++++++++++++++++++++++++++++footer css++++++++++++++++++++++++++++++++= */
+.footer {
+  background-image: linear-gradient(rgb(224, 244, 250), white);
+}
+.footer p {
+  color: rgb(99, 98, 98);
+  text-align: left;
+  line-height: 2em;
+}
+.footer-list-2 {
+  padding-left: 12px;
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  margin: 110px;
+}
+.section-image-1 {
+  width: 500px;
+}
+
+.button-1 {
+  font-size: 20px;
+  color: white;
+  width: 330px;
+  padding: 10px;
+  background-image: linear-gradient(45deg, rgb(53, 178, 236), rgb(4, 112, 161));
+  border: none;
+  border-radius: 3px;
+}
+
+.about-heading h1 {
+  font-weight: bold;
+  font-size: 60px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.about-paragraph {
+  word-spacing: 10px;
+  color: rgb(61, 61, 61);
+}
+
+.about-section-3-button {
+  padding: 10px;
+  width: 130px;
+  border: none;
+  background-image: linear-gradient(
+    45deg,
+    rgb(145, 206, 235),
+    rgb(2, 134, 211)
+  );
+  color: white;
+  font-size: 20px;
+}
+@media screen and (max-width: 1000px) {
+  .secand-para-image {
+    display: none;
+  }
+}
+
+.card-image {
+  width: 45%;
+}
+
+.album-img {
+  width: 70%;
+  margin-top: 60px;
+}
+
+/* ++++++++++++++++++++++++++==index page first row of cards+++++++++++++++++++++++===  */
+.card-line-first {
+  margin-top: 200px;
+}
+
+.card-1 {
+  margin: 40px;
+  margin-top: 60px;
+  box-shadow: none;
+  width: 22rem;
+  height: 30rem;
+  font-weight: 500;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+.first-cards-heading h2 {
+  font-size: 60px;
+  font-weight: 600;
+}
+.row-card-1 {
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.card-body-1 {
+  padding: 20px;
+}
+.card-body-1 p {
+  word-spacing: 5px;
+  line-height: 2;
+  font-size: 20px;
+}
+
+/* +++++++++++++++++++++index page secand row of cards css+++++++++++++++++++++++++++++= */
+.card-line-second {
+  margin-top: 150px;
+}
+.card-2 {
+  margin: 40px;
+  margin-top: 60px;
+  box-shadow: none;
+  width: 22rem;
+  height: 28rem;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.second-cards-heading h2 {
+  font-size: 60px;
+  font-weight: 600;
+}
+.row-card-2 {
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.card-body-2 {
+  line-height: 2;
+}
+.card-body-2 span {
+  text-decoration: line-through;
+  color: rgb(94, 93, 93);
+  font-size: 20px;
+}
+.crad-2-price {
+  font-size: 23px;
+  color: rgb(6, 134, 245);
+}
+.card-text-2 {
+  color: rgb(82, 80, 80);
+  font-size: 18px;
+}
+/* +++++++++++++++++++++++++++++row-3 card-3 of index.html+++++++++++++++++++++++++++++++= */
+.card-line-third {
+  margin-top: 150px;
+}
+.card-3 {
+  margin: 40px;
+  margin-top: 60px;
+  box-shadow: none;
+  width: 22rem;
+  height: 28rem;
+  border: 1px solid rgb(252, 235, 237);
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.row-card-3 {
+  height: 300px;
+}
+.third-cards-heading,
+h2 {
+  font-size: 60px;
+  font-weight: 600;
+}
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.card-img-top {
+  width: 100%;
+}
+.card-body-3 p {
+  line-height: 2;
+  word-spacing: 5px;
+}
+
+.third-card-background-div {
+  background-image: linear-gradient(rgb(208, 236, 241), rgb(250, 239, 241));
+  padding: 200px;
+  width: 100%;
+  margin-top: 190px;
+  position: absolute;
+  z-index: -1;
+}
+
+/* ++++++++++++++++++++++++++last block css+++++++++++++++++++++++++++++++++++++ */
+.last-block {
+  margin-top: 150px;
+  padding: 40px;
+}
+.last-left-block {
+  word-spacing: 4px;
+}
+.last-correct-icon {
+  padding-right: 15px;
+}
+.last-button {
+  background-image: linear-gradient(
+    45deg,
+    rgb(119, 206, 247),
+    rgb(1, 122, 192)
+  );
+  color: white;
+  border: none;
+  width: 200px;
+  margin-top: 20px;
+  font-size: 18px;
+}
+/* +++++++++++++++++++++++++++++++++profile css +++++++++++++++++++++++++++++++++++++++++*/
+.profile-button {
+  width: 120px;
+  padding: 8px;
+  color: white;
+  background-color: rgb(31, 150, 248);
+  font-size: 20px;
+  border: none;
+  border-radius: 2px;
+}
+.profile-content-1 {
+  margin: 25px;
+}
+.main-profile {
+  margin: 100px;
+}
+
+.profile-image {
+  width: 60%;
+}
+
+.profile-list ul li {
+  list-style: none;
+  line-height: 3em;
+  font-size: 20px;
+}
+.profile-button a {
+  color: white;
+  text-decoration: none;
+}
+
+/* +++++++++++addalbum file css++++++++++++++++++++++++++++++++++++++++++++ */
+.add-album {
+  width: 60%;
+  margin: auto;
+  padding: 60px;
+  margin-top: 50px;
+  margin-bottom: 150px;
+  line-height: 2.5;
+}
+
+.add-album-input-1 {
+  border: none;
+}
+.add-album-button button {
+  width: 120px;
+  border: none;
+  background-color: rgb(42, 147, 233);
+  border-radius: 3px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.section-image-2 {
+  width: 700px;
+  height: 1000px;
+}
+
+
+/* navbar-responsive */
+@media screen and (max-width: 992px) {
+  .navbar .navbar-toggler {
+    display: block;
+    color: white;
+    float: right; /* Display only on smaller screens */
+  }
+
+  .navbar .nav-center-list,
+  .navbar .nav-side-list {
+    display: none; /* Hide on larger screens */
+  }
+
+  .navbar .login,
+  .navbar .signup,
+  .navbar .profile {
+    display: none;
+  }
+  .about-content-3-text-1 {
+    display: none;
+  }
+  .about-content-3-text-2 {
+    margin-bottom: 30px;
+  }
+}
+.logout{
+  color: white;
+}
+
+
+
+/* ++++++++++++++++++++++++++++++media query+++++++++++++++++++++++++++++++++++++ */
+@media screen and (max-width: 1000px) {
+  .section-image-2 {
+    display: none;
+  }
+  .section-image-1 {
+    display: none;
+  }
+  .reset-password-image {
+    display: none;
+  }
+  .Home {
+    display: none;
+  }
+  .About {
+    display: none;
+  }
+  .right-block-image img {
+    display: none;
+  }
+  /* .nav-side-list{
+    flex-direction: column;
+  } */
+  .first-album {
+    flex-wrap: wrap;
+  }
+  .second-album {
+    flex-wrap: wrap;
+  }
+  .header-heading {
+    font-size: 20px;
+  }
+  .third-card-background-div {
+    display: none;
+  }
+  .main-profile {
+    flex-wrap: wrap;
+  }
+  .bout-content-section-3 {
+    flex-direction: column;
+  }
+  .main-img {
+    height: 400px;
+  }
+  .about-heading h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  .album-img {
+    width: 80%;
+  }
+  .profile-btn {
+    align-items: center;
+  }
+  .content-overlay {
+    margin-top: 80px;
+  }
+  .first-cards-heading h2 {
+    font-size: 30px;
+  }
+  .second-cards-heading h2 {
+    font-size: 30px;
+  }
+  .third-cards-heading h2 {
+    font-size: 30px;
+  }
+  .last-heading h2 {
+    font-size: 30px;
+  }
+  .card-line-first {
+    margin-top: 100px;
+  }
+  .card-line-second {
+    margin-top: 100px;
+  }
+  .card-line-third{
+    margin-top: 100px;
+  }
+  .last-block{
+    margin-top: 70px;
+  }
+  .card-1 {
+    height: 25rem;
+  }
+  .card-body-1 p {
+    font-size: 17px;
+  }
+  .card-2 {
+    height: 24rem;
+  }
+}
+@media screen and (max-width: 1450px) {
+  .secondary-img {
+    max-height: 45vh;
+    display: none;
+  }
+  .content-overlay {
+    position: absolute;
+    top: 10%;
+    left: 0%;
+    font-size: 10px;
+  }
+  .third-card-background-div {
+    display: none;
+  }
+  .last-right-block {
+    margin-top: 90px;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .form-container {
+    margin-left: 120px;
+  }
+  .profile-list {
+    padding-left: 40px;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  img.secondary-img {
+    width: 1100px;
+    position: absolute;
+    top: 8%;
+    right: 2%;
+  }
+}
+
+@media screen and (min-width: 4000px) {
+  img.secondary-img {
+    width: 1100px;
+    position: absolute;
+    top: 0%;
+    right: 10%;
+  }
+}
