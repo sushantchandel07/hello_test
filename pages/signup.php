@@ -1,37 +1,27 @@
 <?php
-
 // Enable error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-$fullNameErr = $dobErr = $numberErr = $emailErr = $passwordErr = $confirmPasswordErr = "";
+$fullNameErr = $dobErr = $numberErr =$genderErr= $emailErr = $passwordErr = $confirmPasswordErr = "";
 $fullName = $dob = $gender = $number = $email = $password = $confirmPassword = "";
 $errormessage=$successmessage="";
-
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
     $fullNameErr = "Full Name is required";
     }
  else  {
-    $fullName = test_input($_POST["name"]); 
+    $fullName = test_input($_POST["name"]);
     }
-
     if (empty($_POST["dob"])) {
       $dobErr = "Date of Birth is required";
   } else {
       $dob = test_input($_POST["dob"]);
-
       $currentYear = date("Y");
       $dobYear = date("Y", strtotime($dob));
       if ($dobYear > 2005 || $dobYear > $currentYear) {
          $dobErr = "Date of Birth must be from the year 2005 or earlier";
       }
   }
-
-    
-
     if (empty($_POST["number"])) {
       $numberErr = "Contact number is required";
     } elseif (!is_numeric($_POST["number"])) {
@@ -41,8 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
       $number = test_input($_POST["number"]);
     }
-  
-
     if (empty($_POST["email"])) {
       $emailErr = "Email is required";
   } elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
@@ -50,9 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
       $email = test_input($_POST["email"]);
   }
-  
-  
-
     if (empty($_POST["password"])) {
       $passwordErr = "Password is required";
     } elseif (strlen($_POST["password"])!=8 ) {
@@ -60,8 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
       $password = test_input($_POST["password"]);
     }
-
-
   if (empty($_POST["confirmPassword"])) {
     $confirmPasswordErr = "Confirm Password is required";
     } elseif (strlen($_POST["confirmPassword"]) < 8) {
@@ -69,8 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
     $confirmPassword = test_input($_POST["confirmPassword"]);
     }
-
-
    if ($passwordErr == "" && $confirmPasswordErr == "") {
    if ($password != $confirmPassword) {
       $confirmPasswordErr = "Passwords do not match";
@@ -78,68 +59,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }else{
     $confirmPassword=test_input($_POST["confirmPassword"]);
   }
-
   $password = test_input($_POST["password"]);
   $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
   $confirmPassword = test_input($_POST["confirmPassword"]);
   $hashedConfirmPassword = password_hash($confirmPassword, PASSWORD_DEFAULT);
 }
-
-
-if (empty($fullNameErr) && empty($dobErr) && empty($numberErr) && empty($emailErr) && empty($passwordErr)
- && empty($confirmPasswordErr) && $fullName && $dob && $gender && $number && $email && $password && $confirmPassword) {
-
-}
+if (empty($fullNameErr) && empty($dobErr) && empty($numberErr) && empty($genderErr) && empty($emailErr) && empty($passwordErr) && empty($confirmPasswordErr) &&
+        !empty($fullName) && !empty($dob) && !empty($number) && !empty($gender) && !empty($email) && !empty($password) && !empty($confirmPassword) && !empty($_POST['country']) && !empty($_POST['state'])) {
+ }
 if(isset($_POST[ 'submit'])){
   $name= $_POST['name'];
   $dob= $_POST['dob'];
   $gender=$_POST['gender'];
   $number=$_POST['number'];
   $email=$_POST['email'];
- 
-
+  $country = $_POST['country'];
+    $state = $_POST['state'];
   require '../common/database.php';
-
   $hashedpassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-
-  $sql = "INSERT INTO userdata(name,date_of_birth,gender,phone,email,password) VALUES('$name', '$dob', '$gender','$number','$email', '$hashedpassword')";
+  $sql = "INSERT INTO userdata(name,date_of_birth,gender,phone,email,password,country_id, state_id) VALUES('$name', '$dob', '$gender','$number','$email', '$hashedpassword','$country', '$state')";
 $checkUserQuery =  "SELECT * FROM userdata WHERE email = '$email'";
 $result = $conn->query($checkUserQuery);
 if($result->num_rows>0){
   $errormessage="Already have an account";
 }
 elseif($conn->query($sql) === TRUE){
-  $successmessage="Account created successfully! Please login to continue.";
+  $successmessage="your Account has been created successfully!<br> Please login to continue.";
 }
 $fullName = $dob = $gender = $number = $email = $password = $confirmPassword = "";
 }
-
-
-
-
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
-    $data = htmlspecialchars($data); 
+    $data = htmlspecialchars($data);
     return $data;
 }
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>bootstrapproject</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
       .error {
         color: red;
       }
-
 .important{
   color: red;
 }
@@ -160,12 +126,8 @@ function test_input($data) {
     <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body class="d-flex flex-column min-vh-100">
-
   <!--header-->
   <?php include "../common/header.php" ?>
-    
-
-
   <!--main section-->
     <div class="section d-flex">
       <div class="section-image">
@@ -194,14 +156,12 @@ function test_input($data) {
               <span class="error"><?php echo $fullNameErr; ?></span>
             </div>
             <br/>
-
             <div class="form-group">
               <label for="dob">Date of Birth<span class="important">*</span></label>
               <input type="date" class="form-control" id="dob" name="dob"  value="<?php echo htmlspecialchars($dob); ?>"/>
               <span class="error"><?php echo $dobErr;?></span>
             </div>
             <br />
-
             <div class="form-group">
               <label for="gender">Gender<span class="important">*</span></label>
               <select class="form-control" id="gender" name="gender">
@@ -211,30 +171,30 @@ function test_input($data) {
               </select>
             </div>
             <br />
-
-
             <div class="form-group">
               <label for="gender">country<span class="important">*</span></label>
-              <select class="form-control" id="country" name="gender">            
-               <option class= "country">select country</option>
-               <?php 
-               require '../common/database.php';
-               $query = mysqli_query($conn ,"SELECT * FROM `country` ");
-               while($row= mysqli_fetch_array($query)){
-               ?>
-               <option value= "<?php echo $row['id'];?>"> <?php echo $row['name'];?></option>
-               <?php
-               }
-               ?>
+              <select class="form-control" id="country" name="country"> 
+              <option>select country</option>
+                <?php
+                 require "../common/database.php";
+                 $sql = "SELECT * FROM country";
+                 $result = mysqli_query($conn,$sql);
+                if($result->num_rows >  0){
+                  while($row = $result->fetch_assoc()) {
+                    echo '<option value="' . $row['cid'] . '">' . $row['cname'] . '</option>';
+                }
+                }
+                ?>
               </select>
             </div>
             <br />
             <div class="form-group">
               <label for="gender">state<span class="important">*</span></label>
-              <select class="form-control" id="state" name="gender">
-              <option class= "country">select state</option>      
+              <select class="form-control" id="state" name="state"> 
+                <option>select state</option>
               </select>
             </div>
+            <br />
             <br />
             <div class="form-group">
               <label for="country"> Phone number<span class="important">*</span></label>
@@ -249,7 +209,6 @@ function test_input($data) {
               <span class="error"><?php echo $numberErr;?></span>
             </div>
             <br />
-
             <div class="form-group">
               <label for="email">E-mail<span class="important">*</span></label>
               <input
@@ -264,7 +223,6 @@ function test_input($data) {
               <span class="text-danger"><?php echo $errormessage ? "<p>$errormessage.</p>" :"" ?></span>
             </div>
             <br />
-
             <div class="form-group">
               <label for="password">Password<span class="important">*</span></label>
               <input
@@ -278,21 +236,18 @@ function test_input($data) {
               <span class="error"><?php echo $passwordErr; ?></span>
             </div>
             <br />
-
             <div class="form-group">
               <label for="password">Confirm Password<span class="important">*</span></label>
               <input type="password"
                 class="form-control"
                 id="password"
                 placeholder="confirm password"
-                name="confirmPassword" 
+                name="confirmPassword"
                 value="<?php echo htmlspecialchars($confirmPassword); ?>"
                 />
-
               <span class="error"><?php echo $confirmPasswordErr; ?></span>
             </div>
             <br />
-
             <div class="form-group">
               <input class="button-1 btn-primary" type="submit" name="submit"/>
             </div>
@@ -302,34 +257,33 @@ function test_input($data) {
     </div>
     <!-- footer -->
     <?php include "../common/footer.php"?>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-    $(document).ready(function(){
-      $("#country").on('change', function(){
-        var countryId = $(this).val();
-        $.ajax({
-          method:"post";
-          url:"get-data.php";
-          data: {id : countryId},
-          datatype:"html";
-          success:function(data){
-            $("#state").html(data);
-          }
+      $(document).ready(function(){
+        function loaddata(type,category_id){
+          $.ajax({
+            url:"load-cs.php",
+            type:"POST",
+            data:{type:type, id: category_id},
+            success:function(data){
+             if(type=="statedata"){
+              $( "#state" ).html(data);
+             }else{
+              $("#country").append(data);
+             }
+            }
+          })
+        }
+        loaddata();
+        $("#country").on("change",function(){
+          var country = $("#country").val();
+          loaddata("statedata",country);
         })
-      });
-    });
-
-  </script>
+      })
+      </script>
   </body>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"
-  ></script>
- 
+  ></scrip>
 </html>
-
-
-
-
-

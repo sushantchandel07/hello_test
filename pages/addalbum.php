@@ -1,39 +1,28 @@
 <?php
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-require '../common/database.php';
-
-if(isset($_POST['submit'])) {
-    $filename = $_FILES["uploadfile"]["name"];
-    $tempname = $_FILES["uploadfile"]["tmp_name"];
-    $folder = "../uploads/" . $filename;
-
-    // Move the uploaded file to the destination folder
-    move_uploaded_file($tempname, $folder);
-
-    if($filename != "") {
-        // Corrected SQL query to insert the file path into the 'picsource' column
-        $query = "INSERT INTO gallery (picsource) VALUES ('$folder')";
-        $data = mysqli_query($conn, $query);
-
-        if($data) {
-            echo "inserted";
-        } else {
-            echo "not inserted";
-        }
-    } else {
-        echo "Please choose a file to upload.";
+session_start();
+require "../common/database.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+    $userid = $_SESSION['userid'];
+    $albumName = mysqli_real_escape_string($conn, $_POST['album_name']);
+    $uploadDir = "../uploads/";
+    $images = $_FILES['uploadfile'];
+    $albumDir = $uploadDir . $userid . "_" . time() . "/";
+    mkdir($albumDir, 0777, true); // Create the directory if it doesn't exist
+    // Loop through each uploaded image
+    foreach ($images['name'] as $key => $image) {
+        $tempName = $images['tmp_name'][$key];
+        $imagePath = $albumDir . $image;
+        // Move the image to the album directory
+        move_uploaded_file($tempName, $imagePath);
+        // Insert image information into the database
+        $sql = "INSERT INTO albums (user_id, album_name, image_path) VALUES ('$userid', '$albumName', '$imagePath')";
+        mysqli_query($conn, $sql);
     }
+    // Redirect the user after creating the album
+    header("Location: gallery_display.php");
+    exit();
 }
-
 ?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,12 +45,10 @@ if(isset($_POST['submit'])) {
     <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body class="d-flex flex-column min-vh-100">
-
 <?php include "../common/header.php";?>
 <div class="profile-main-section-image">
     <img src="../photos/Rectangle 619.png " alt="Image" width="100%" />
 </div>
-
 <div class="profile-content-1 d-flex justify-content-evenly flex-wrap">
     <div class="profile-para">
         <p>
@@ -80,26 +67,39 @@ if(isset($_POST['submit'])) {
     </div>
 </div>
 <hr />
-
 <div class="add-album border">
-    <!-- Add this form element inside your existing HTML structure -->
+    <!-- Album creation form -->
     <form action="" method="post" enctype="multipart/form-data">
         <div class="add-album-input-2">
-            <label>Upload Images</label>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="file" name="uploadfile" accept="image/*" multiple required />
+            <label for="album_name">Album Name:</label>
+            <input type="text" name="album_name" id="album_name" required>
         </div>
         <br />
-        <div class="add-album-button"><button name="submit" type="submit">Create Album</button></div>
+        <div class="add-album-input-2">
+            <label>Upload Images:</label>
+            <input type="file" name="uploadfile[]" accept="image/*" multiple required />
+        </div>
+        <br />
+        <div class="add-album-button">
+            <button type="submit" name="submit">Create Album</button>
+        </div>
     </form>
 </div>
 <!--footer-->
 <?php include "../common/footer.php" ?>
-
 </body>
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"
 ></script>
-
 </html>
+
+
+
+
+
+
+
+
+
