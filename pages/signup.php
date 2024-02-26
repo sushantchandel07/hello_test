@@ -2,7 +2,7 @@
 // Enable error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-$fullNameErr = $dobErr = $numberErr =$genderErr= $emailErr = $passwordErr = $confirmPasswordErr = "";
+$fullNameErr = $dobErr = $numberErr =$genderErr= $emailErr = $passwordErr = $confirmPasswordErr =$stateErr=$countryErr = "";
 $fullName = $dob = $gender = $number = $email = $password = $confirmPassword = "";
 $errormessage=$successmessage="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  else  {
     $fullName = test_input($_POST["name"]);
     }
+
     if (empty($_POST["dob"])) {
       $dobErr = "Date of Birth is required";
   } else {
@@ -22,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $dobErr = "Date of Birth must be from the year 2005 or earlier";
       }
   }
+
     if (empty($_POST["number"])) {
       $numberErr = "Contact number is required";
     } elseif (!is_numeric($_POST["number"])) {
@@ -31,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
       $number = test_input($_POST["number"]);
     }
+
     if (empty($_POST["email"])) {
       $emailErr = "Email is required";
   } elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
@@ -38,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
       $email = test_input($_POST["email"]);
   }
+
     if (empty($_POST["password"])) {
       $passwordErr = "Password is required";
     } elseif (strlen($_POST["password"])!=8 ) {
@@ -45,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
       $password = test_input($_POST["password"]);
     }
+
   if (empty($_POST["confirmPassword"])) {
     $confirmPasswordErr = "Confirm Password is required";
     } elseif (strlen($_POST["confirmPassword"]) < 8) {
@@ -52,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
     $confirmPassword = test_input($_POST["confirmPassword"]);
     }
+
    if ($passwordErr == "" && $confirmPasswordErr == "") {
    if ($password != $confirmPassword) {
       $confirmPasswordErr = "Passwords do not match";
@@ -59,6 +65,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }else{
     $confirmPassword=test_input($_POST["confirmPassword"]);
   }
+
+
+  
+
   $password = test_input($_POST["password"]);
   $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
   $confirmPassword = test_input($_POST["confirmPassword"]);
@@ -195,7 +205,35 @@ function test_input($data) {
               </select>
             </div>
             <br />
-            <br />
+                
+
+
+            <label>Hobbies</label>
+            <hr style="width:70px">    
+          <div class="form-group d-flex flex-wrap">
+           <div class="form-check ">
+             <input class="form-check-input" type="checkbox" name="hobbies[]" value="reading">
+             <label class="form-check-label">Reading</label>
+           </div>
+           <div class="form-check">
+             <input class="form-check-input" type="checkbox" name="hobbies[]" value="traveling">
+             <label class="form-check-label">Traveling</label>
+           </div>
+           <div class="form-check">
+             <input class="form-check-input" type="checkbox" name="hobbies[]" value="gaming">
+             <label class="form-check-label">Gaming</label>
+           </div>
+           
+           <div class="form-check">
+             <input class="form-check-input" type="checkbox" name="hobbies[]" value="gaming">
+             <label class="form-check-label">Gaming</label>
+           </div> 
+        </div>
+        <br />
+
+
+
+
             <div class="form-group">
               <label for="country"> Phone number<span class="important">*</span></label>
               <input

@@ -67,7 +67,7 @@ if (mysqli_num_rows($result) > 0) {
         while ($imageRow = mysqli_fetch_assoc($resultImages)) {
             $imageId = $imageRow['album_id'];
             $imagePath = $imageRow['image_path'];
-            echo "<img src='$imagePath' class='imagestyle' style='width: 400px; height: 400px; display:flex; flex:column;'  alt='Album Image' />";
+            echo "<img src='$imagePath' class='imagestyle' style='width: 350px; height: 350px;'  alt='Album Image' />";
             echo "<form method='post' action='delete_image.php'>";
             echo "<input type='hidden' name='image_id' value='$imageId' />";
             echo "<button type='submit' class='btn btn-danger'>Delete</button>";

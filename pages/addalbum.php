@@ -7,18 +7,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $uploadDir = "../uploads/";
     $images = $_FILES['uploadfile'];
     $albumDir = $uploadDir . $userid . "_" . time() . "/";
-    mkdir($albumDir, 0777, true); // Create the directory if it doesn't exist
-    // Loop through each uploaded image
+    mkdir($albumDir, 0777, true); 
     foreach ($images['name'] as $key => $image) {
         $tempName = $images['tmp_name'][$key];
         $imagePath = $albumDir . $image;
-        // Move the image to the album directory
+        
         move_uploaded_file($tempName, $imagePath);
-        // Insert image information into the database
+        
         $sql = "INSERT INTO albums (user_id, album_name, image_path) VALUES ('$userid', '$albumName', '$imagePath')";
         mysqli_query($conn, $sql);
     }
-    // Redirect the user after creating the album
+   
     header("Location: gallery_display.php");
     exit();
 }
