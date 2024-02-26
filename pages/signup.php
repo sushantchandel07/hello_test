@@ -1,5 +1,5 @@
 <?php
-// Enable error reporting
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 $fullNameErr = $dobErr = $numberErr =$genderErr= $emailErr = $passwordErr = $confirmPasswordErr =$stateErr=$countryErr = "";
@@ -92,7 +92,7 @@ if(isset($_POST[ 'submit'])){
 $checkUserQuery =  "SELECT * FROM userdata WHERE email = '$email'";
 $result = $conn->query($checkUserQuery);
 if($result->num_rows>0){
-  $errormessage="Already have an account";
+  $errormessage="";
 }
 elseif($conn->query($sql) === TRUE){
   $successmessage="your Account has been created successfully!<br> Please login to continue.";
@@ -107,13 +107,8 @@ function test_input($data) {
     return $data;
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>bootstrapproject</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    
     <style>
       .error {
         color: red;
@@ -122,22 +117,6 @@ function test_input($data) {
   color: red;
 }
     </style>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../css/style.css" />
-  </head>
-  <body class="d-flex flex-column min-vh-100">
   <!--header-->
   <?php include "../common/header.php" ?>
   <!--main section-->
@@ -266,20 +245,20 @@ function test_input($data) {
             <hr style="width:70px">    
           <div class="form-group d-flex flex-wrap">
            <div class="form-check ">
-             <input class="form-check-input" type="checkbox" name="hobbies[]" value="reading">
+             <input class="form-check-input" type="checkbox" name="hobbies" value="reading">
              <label class="form-check-label">Reading</label>
            </div>&nbsp;&nbsp;
            <div class="form-check">
-             <input class="form-check-input" type="checkbox" name="hobbies[]" value="traveling">
+             <input class="form-check-input" type="checkbox" name="hobbies" value="traveling">
              <label class="form-check-label">Traveling</label>
            </div>&nbsp;&nbsp;
            <div class="form-check">
-             <input class="form-check-input" type="checkbox" name="hobbies[]" value="gaming">
+             <input class="form-check-input" type="checkbox" name="hobbies" value="gaming">
              <label class="form-check-label">Gaming</label>
            </div>&nbsp;&nbsp;
            
            <div class="form-check">
-             <input class="form-check-input" type="checkbox" name="hobbies[]" value="gaming">
+             <input class="form-check-input" type="checkbox" name="hobbies" value="gaming">
              <label class="form-check-label">eating</label>
            </div> 
         </div>
@@ -316,13 +295,7 @@ function test_input($data) {
         })
       })
       </script>
-  </body>
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"
-  ></scrip>
-</html>
 
+  
 
         

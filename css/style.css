@@ -459,7 +459,12 @@ h2 {
 .logout{
   color: white;
 }
-
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  cursor: pointer;
+}
 
 
 /* ++++++++++++++++++++++++++++++media query+++++++++++++++++++++++++++++++++++++ */
