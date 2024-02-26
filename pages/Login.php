@@ -62,19 +62,6 @@ function test_input($data) {
 }
 ?>
 
-
-
-    <style>
-        .eye-icon {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            cursor: pointer;
-        }
-    </style>
-
-
-<!--header -->
 <?php ?>
 <div class="section d-flex">
     <div class="section-image">
@@ -113,7 +100,7 @@ function test_input($data) {
                         placeholder="Your Password"
                         name="password"
                     />
-                    <span class="eye-icon" onclick="togglePassword('password', 'eye-icon')">
+                    <span class="eye-icon" style="position:absolute; right:10px; top:50%;  cursor:pointer;" onclick="togglePassword('password', 'eye-icon')">
                         <i class="far fa-eye"></i>
                     </span>
                     <span class="text-danger"><?php echo $passwordErr?></span>

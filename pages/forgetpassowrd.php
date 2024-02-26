@@ -1,6 +1,5 @@
 <?php 
 require "../common/database.php";
-
 ?>
 
 
