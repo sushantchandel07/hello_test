@@ -1,5 +1,7 @@
 <?php
 session_start(); 
+include "../common/header.php";  
+require "../common/database.php";
 $email = $password = "";
 $emailErr = $passwordErr = "";
 
@@ -20,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-require "../common/database.php";
+
 
 if (isset($_POST['login'])) {
 
@@ -70,11 +72,10 @@ function test_input($data) {
             cursor: pointer;
         }
     </style>
-</head>
-<body class="d-flex flex-column min-vh-100">
+
 
 <!--header -->
-<?php include "../common/header.php" ?>
+<?php ?>
 <div class="section d-flex">
     <div class="section-image">
         <img class="section-image-1" src="../photos/Illustration.png" />
