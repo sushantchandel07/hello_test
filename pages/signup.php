@@ -67,16 +67,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
 
-  
-
   $password = test_input($_POST["password"]);
   $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
   $confirmPassword = test_input($_POST["confirmPassword"]);
-  $hashedConfirmPassword = password_hash($confirmPassword, PASSWORD_DEFAULT);
+  
 }
 if (empty($fullNameErr) && empty($dobErr) && empty($numberErr) && empty($genderErr) && empty($emailErr) && empty($passwordErr) && empty($confirmPasswordErr) &&
         !empty($fullName) && !empty($dob) && !empty($number) && !empty($gender) && !empty($email) && !empty($password) && !empty($confirmPassword) && !empty($_POST['country']) && !empty($_POST['state'])) {
- }
+        }
 if(isset($_POST[ 'submit'])){
   $name= $_POST['name'];
   $dob= $_POST['dob'];
@@ -87,7 +85,10 @@ if(isset($_POST[ 'submit'])){
     $state = $_POST['state'];
   require '../common/database.php';
   $hashedpassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
-  $sql = "INSERT INTO userdata(name,date_of_birth,gender,phone,email,password,country_id, state_id) VALUES('$name', '$dob', '$gender','$number','$email', '$hashedpassword','$country', '$state')";
+  
+  $hobbies = isset($_POST['hobbies']) ? implode(',', $_POST['hobbies']) : '';
+
+  $sql = "INSERT INTO userdata(name,date_of_birth,gender,phone,email,password,country_id, state_id, hobbies) VALUES('$name', '$dob', '$gender','$number','$email', '$hashedpassword','$country', '$state', '$hobbies')";
 $checkUserQuery =  "SELECT * FROM userdata WHERE email = '$email'";
 $result = $conn->query($checkUserQuery);
 if($result->num_rows>0){
@@ -98,6 +99,7 @@ elseif($conn->query($sql) === TRUE){
 }
 $fullName = $dob = $gender = $number = $email = $password = $confirmPassword = "";
 }
+        
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -205,32 +207,6 @@ function test_input($data) {
               </select>
             </div>
             <br />
-                
-
-
-            <label>Hobbies</label>
-            <hr style="width:70px">    
-          <div class="form-group d-flex flex-wrap">
-           <div class="form-check ">
-             <input class="form-check-input" type="checkbox" name="hobbies[]" value="reading">
-             <label class="form-check-label">Reading</label>
-           </div>
-           <div class="form-check">
-             <input class="form-check-input" type="checkbox" name="hobbies[]" value="traveling">
-             <label class="form-check-label">Traveling</label>
-           </div>
-           <div class="form-check">
-             <input class="form-check-input" type="checkbox" name="hobbies[]" value="gaming">
-             <label class="form-check-label">Gaming</label>
-           </div>
-           
-           <div class="form-check">
-             <input class="form-check-input" type="checkbox" name="hobbies[]" value="gaming">
-             <label class="form-check-label">Gaming</label>
-           </div> 
-        </div>
-        <br />
-
 
 
 
@@ -286,6 +262,28 @@ function test_input($data) {
               <span class="error"><?php echo $confirmPasswordErr; ?></span>
             </div>
             <br />
+            <label>Hobbies</label>
+            <hr style="width:70px">    
+          <div class="form-group d-flex flex-wrap">
+           <div class="form-check ">
+             <input class="form-check-input" type="checkbox" name="hobbies[]" value="reading">
+             <label class="form-check-label">Reading</label>
+           </div>&nbsp;&nbsp;
+           <div class="form-check">
+             <input class="form-check-input" type="checkbox" name="hobbies[]" value="traveling">
+             <label class="form-check-label">Traveling</label>
+           </div>&nbsp;&nbsp;
+           <div class="form-check">
+             <input class="form-check-input" type="checkbox" name="hobbies[]" value="gaming">
+             <label class="form-check-label">Gaming</label>
+           </div>&nbsp;&nbsp;
+           
+           <div class="form-check">
+             <input class="form-check-input" type="checkbox" name="hobbies[]" value="gaming">
+             <label class="form-check-label">eating</label>
+           </div> 
+        </div>
+        <br />
             <div class="form-group">
               <input class="button-1 btn-primary" type="submit" name="submit"/>
             </div>
@@ -325,3 +323,6 @@ function test_input($data) {
     crossorigin="anonymous"
   ></scrip>
 </html>
+
+
+        

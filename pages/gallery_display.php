@@ -21,6 +21,9 @@ session_start();
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../css/style.css" />
+    <style>
+   
+    </style>
   </head>
   <body class="d-flex flex-column min-vh-100">
     <!--header-->
@@ -49,7 +52,7 @@ session_start();
 <hr/>
 <?php
 require "../common/database.php";
-if (!isset($_SESSION['userid']) || empty($_SESSION['userid'])) {
+if (!isset($_SESSION['userid']) || empty($_SESSION['userid'])){
     header("Location: Login.php");
     exit();
 }
@@ -62,17 +65,22 @@ if (mysqli_num_rows($result) > 0) {
         $albumName = $row['album_name'];
         $sqlImages = "SELECT * FROM albums WHERE album_id = $albumId";
         $resultImages = mysqli_query($conn, $sqlImages);
-        echo "<h2>$albumName</h2>";
-        echo "<div class='album-images'>";
+        
+        echo "<div class='album-images  '>";
         while ($imageRow = mysqli_fetch_assoc($resultImages)) {
             $imageId = $imageRow['album_id'];
             $imagePath = $imageRow['image_path'];
+            echo "<div class='border'>";
+
             echo "<img src='$imagePath' class='imagestyle' style='width: 350px; height: 350px;'  alt='Album Image' />";
             echo "<form method='post' action='delete_image.php'>";
             echo "<input type='hidden' name='image_id' value='$imageId' />";
+            echo "<h4>$albumName</h4>";
             echo "<button type='submit' class='btn btn-danger'>Delete</button>";
             echo "</form>";
+            echo "</div>";
         }
+       
         echo "</div>";
     }
 } else {
@@ -80,6 +88,12 @@ if (mysqli_num_rows($result) > 0) {
 }
 mysqli_close($conn);
 ?>
+
+
+<div>
+
+
+</div>
 <?php include "../common/footer.php" ?>
   </body>
   <script
@@ -88,14 +102,3 @@ mysqli_close($conn);
     crossorigin="anonymous"
   ></script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
