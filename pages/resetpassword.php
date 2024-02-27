@@ -1,25 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>bootstrapproject</title>
-    <style>
-        .error {
-            color: red;
-        }
 
-        .important {
-            color: red;
-        }
-
-        .eye-icon {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            cursor: pointer;
-        }
-    </style>
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -42,6 +21,7 @@
     <div class="section-image ">
         <img class="section-image-1" src="../photos/Rectangle.png" />
     </div>
+    <input name="password_token" class="d-none" value = "<?php if(isset($_GET['token'])){echo $_GET[ 'token'];}?>"/>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <div class="form-container ">
             <div class="form heading">
@@ -52,24 +32,47 @@
             </div>
             <div class="form">
                 <div class="form-group position-relative">
+                    <label for="password"><span class="important"></span>Email</label>
+                    <input
+                        
+                        class="form-control"
+                        id="password"
+                        placeholder="Email"
+                        name="email"
+                        value = "<?php  if(isset($_GET['email'])){echo $_GET[ 'email'];}?>"
+                    />
+                    <span class="error"><?php echo $passwordErr; ?></span>
+                </div>
+                <br/>
+                <div class="form-group position-relative">
                     <label for="password"><span class="important"></span>Password</label>
                     <input
                         type="password"
                         class="form-control"
                         id="password"
-                        placeholder="Reset-password"
-                        name="password"
+                        placeholder="new-password"
+                        name="new_password"
+                        
+                    />
+                    <span class="error"><?php echo $passwordErr; ?></span>
+                    <br>
+                </div>
+                <div class="form-group position-relative">
+                    <label for="password"><span class="important"></span>confirm Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        placeholder="confirm-password"
+                        name="confirm_password"
                        
                     />
-                    <span class="eye-icon" onclick="togglePassword()">
-                        <i class="far fa-eye"></i>
-                    </span>
                     <span class="error"><?php echo $passwordErr; ?></span>
                 </div>
-                <br/>
+                <br>
 
                 <div class="form-group">
-                    <button class="button-1 btn-primary" type="submit">Submit</button>
+                    <button class="button-1 btn-primary" name="password" type="submit">Submit</button>
                 </div>
                 <br />
             </div>
@@ -77,17 +80,6 @@
     </form>
 </div>
 
-<script>
-    function togglePassword() {
-        let passwordInput = document.getElementById('password');
-
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-        } else {
-            passwordInput.type = 'password';
-        }
-    }
-</script>
 
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

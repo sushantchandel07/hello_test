@@ -23,7 +23,7 @@ if (!isset($_SESSION['status'])) {
           <div class="form-heading">
             <h3>Forget-Password</h3>
             <div class="alert alert_success">
-              <h5><?php echo $_SESSION["status"] ?></h5>
+              <h5 class = "text-success"><?php echo $_SESSION["status"] ?></h5>
               <?php unset($_SESSION['status']); ?>
             </div>
           </div>
