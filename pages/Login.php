@@ -22,8 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-
-
 if (isset($_POST['login'])) {
 
     $email = $_POST['email'];
@@ -42,9 +40,6 @@ if (isset($_POST['login'])) {
         if (password_verify($password, $user['password'])) {
             $_SESSION['logged_in'] = true;
             $_SESSION['userid'] = $user['id'];
-            
-
-
             header("Location: profile.php");
         } else {
             $wrongpassword = "Wrong password";
