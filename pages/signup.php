@@ -83,12 +83,15 @@ if(isset($_POST[ 'submit'])){
   $email=$_POST['email'];
   $country = $_POST['country'];
     $state = $_POST['state'];
+    $verify_token = md5(rand());
+
   require '../common/database.php';
   $hashedpassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
   
-  $hobbies = isset($_POST['hobbies']) ? implode(',', $_POST['hobbies']) : '';
+ $hobbies = isset($_POST['hobbies']) && is_array($_POST['hobbies']) ? implode(',', $_POST['hobbies']) : '';
 
-  $sql = "INSERT INTO userdata(name,date_of_birth,gender,phone,email,password,country_id, state_id, hobbies) VALUES('$name', '$dob', '$gender','$number','$email', '$hashedpassword','$country', '$state', '$hobbies')";
+
+  $sql = "INSERT INTO userdata(name,date_of_birth,gender,phone,email,password,country_id, state_id, hobbies,verify_token) VALUES('$name', '$dob', '$gender','$number','$email', '$hashedpassword','$country', '$state', '$hobbies','$verify_token')";
 $checkUserQuery =  "SELECT * FROM userdata WHERE email = '$email'";
 $result = $conn->query($checkUserQuery);
 if($result->num_rows>0){
@@ -124,7 +127,7 @@ function test_input($data) {
       <div class="section-image">
         <img class="section-image-2" src="../photos/Illustration.png"/>
       </div>
-      <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+      <form method="post" action="code.php">
         <div class="form-container">
           <div class="form heading">
             <div class="form-heading">
@@ -272,6 +275,7 @@ function test_input($data) {
     </div>
     <!-- footer -->
     <?php include "../common/footer.php"?>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       $(document).ready(function(){
         function loaddata(type,category_id){

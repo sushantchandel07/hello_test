@@ -1,11 +1,18 @@
 <?php 
+session_start(); 
 require "../common/database.php";
+include "../common/header.php";
+
+
+
+if (!isset($_SESSION['status'])) {
+     
+}
+
 ?>
 
-  <?php include "../common/header.php" ?>
 
   <!--main section-->
-
     <div class="section d-flex">
       <div class="section-image">
         <img class="section-image-1" src="../photos/Rectangle.png" />
@@ -15,8 +22,12 @@ require "../common/database.php";
         <div class="form heading">
           <div class="form-heading">
             <h3>Forget-Password</h3>
+            <div class="alert alert_success">
+              <h5><?php echo $_SESSION["status"] ?></h5>
+              <?php unset($_SESSION['status']); ?>
+            </div>
           </div>
-          <br />
+          <br/>
         </div>
         <div class="form">
           <div class="form-group">
@@ -35,7 +46,7 @@ require "../common/database.php";
   
          
           <div class="form-group">
-            <button class="button-1 btn-primary" type="submit" name="reset-password">submit</button>
+            <button class="button-1 btn-primary" type="submit" name="password_reset_link" >submit</button>
           </div>
           <br />
         </div>
