@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['upload_image'])) {
         echo "Failed to upload image.";
     }
 }
+
 if (!isset($_SESSION['userid']) || $_SESSION['userid'] == '') {
     header("Location: Login.php");
 }
@@ -43,6 +44,32 @@ $userid = $_SESSION['userid'];
 $sql = "SELECT * FROM userdata WHERE id=$userid";
 $result = mysqli_query($conn, $sql);
 $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+// here i add country  list from database and display it in select option using joins
+$sqlcountry = "SELECT userdata.*, country.cname 
+               FROM userdata
+               JOIN country ON userdata.country_id = country.cid
+               WHERE userdata.id = $userid";
+
+$countryresult = mysqli_query($conn, $sqlcountry);
+
+if ($countryuser = mysqli_fetch_assoc($countryresult)) {
+    $country = $countryuser['cname']; 
+}
+
+
+// here i add state  list from database and display it in select option using joins
+$sqlstate = "SELECT userdata.*, state.sname 
+               FROM userdata
+               JOIN state ON userdata.state_id = state.sid
+               WHERE userdata.id = $userid";
+
+$stateresult = mysqli_query($conn, $sqlstate);
+
+if ($stateuser = mysqli_fetch_assoc($stateresult)) {
+    $state = $stateuser['sname'];
+}
+
 if ($user) {
     $profile_image = $user['profile_image_path'];
     $name = $user['name'];
@@ -50,6 +77,8 @@ if ($user) {
     $phone = $user['phone'];
     $gender = $user['gender'];
     $dob = $user['date_of_birth'];
+    $hobbies = $user['hobbies'];
+   
 } else {
     header("Location: login.php");
 }
@@ -97,6 +126,7 @@ mysqli_close($conn);
           <h3 class="profile-name"><?php echo $name?></h3>
           <p class="profile-email"><?php echo $email ?></p>
           <p class="profile-number"><?php echo $phone ?></p>
+          <a href="update_profile.php"><button class="btn btn-primary">edit profile</button></a>
       </div>
     </div> 
       <div class="d-flex">
@@ -107,15 +137,21 @@ mysqli_close($conn);
             <li>Phone</li>
             <li>Email</li>
             <li>DOB</li>
+            <li>Hobbies</li>
+            <li>Country</li>
+            <li>State</li>
           </ul>
         </div>
         <div class="profile-list">
           <ul>
-            <li><?php echo $name?></li>
+            <li><?php echo ucfirst($name)?></li>
             <li><?php echo $gender ?></li>
             <li><?php echo $phone ?></li>
-            <li><?php echo $email ?></li>
+            <li><?php echo ucfirst($email) ?></li>
             <li><?php echo $dob ?></li>
+            <li><?php  echo $hobbies ?></li>
+            <li><?php  echo $country ?></li>
+            <li><?php  echo $state ?></li>
           </ul>
         </div>
       </div>

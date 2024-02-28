@@ -2,8 +2,8 @@
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-$fullNameErr = $dobErr = $numberErr =$genderErr= $emailErr = $passwordErr = $confirmPasswordErr =$stateErr=$countryErr = "";
-$fullName = $dob = $gender = $number = $email = $password = $confirmPassword = "";
+$fullNameErr = $dobErr = $numberErr =$genderErr= $emailErr = $passwordErr = $confirmPasswordErr =$stateErr="";
+$fullName = $dob = $gender = $number = $email = $password = $confirmPassword ="";
 $errormessage=$successmessage="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
@@ -23,6 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $dobErr = "Date of Birth must be from the year 2005 or earlier";
       }
   }
+    
+
+
 
     if (empty($_POST["number"])) {
       $numberErr = "Contact number is required";
@@ -57,7 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
     $confirmPassword = test_input($_POST["confirmPassword"]);
     }
-
+    if (empty($_POST["country"])) {
+      $fullNameErr = "country is required";
+    }
+  
    if ($passwordErr == "" && $confirmPasswordErr == "") {
    if ($password != $confirmPassword) {
       $confirmPasswordErr = "Passwords do not match";
@@ -65,16 +71,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }else{
     $confirmPassword=test_input($_POST["confirmPassword"]);
   }
-
-
   $password = test_input($_POST["password"]);
   $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
   $confirmPassword = test_input($_POST["confirmPassword"]);
   
 }
-if (empty($fullNameErr) && empty($dobErr) && empty($numberErr) && empty($genderErr) && empty($emailErr) && empty($passwordErr) && empty($confirmPasswordErr) &&
-        !empty($fullName) && !empty($dob) && !empty($number) && !empty($gender) && !empty($email) && !empty($password) && !empty($confirmPassword) && !empty($_POST['country']) && !empty($_POST['state'])) {
-        }
+if (empty($fullNameErr) && empty($dobErr) && empty($numberErr) && empty($genderErr) && empty($emailErr) && empty($passwordErr) && empty($confirmPasswordErr) && 
+        !empty($fullName) && !empty($dob) && !empty($number) && !empty($email) && !empty($password) && !empty($confirmPassword) ) {
+        
         if(isset($_POST[ 'submit'])){
           $name= $_POST['name'];
           $dob= $_POST['dob'];
@@ -101,9 +105,9 @@ if (empty($fullNameErr) && empty($dobErr) && empty($numberErr) && empty($genderE
           elseif($conn->query($sql) === TRUE){
             $successmessage="your Account has been created successfully!<br> Please login to continue.";
           }
-          $fullName = $dob = $gender = $number = $email = $password = $confirmPassword = "";
+          $fullName = $dob = $gender = $number = $email = $password = $confirmPassword = $country="";
         }
-        
+      }     
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);

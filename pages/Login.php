@@ -41,7 +41,7 @@ if (isset($_POST['login'])) {
             $_SESSION['logged_in'] = true;
             $_SESSION['userid'] = $user['id'];
             header("Location: profile.php");
-        } else {
+        } elseif(!empty($_POST['password'])) {
             $wrongpassword = "Wrong password";
         }
     } else {

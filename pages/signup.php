@@ -1,7 +1,7 @@
 <?php 
 
 require "../controllers/controller.signup.php";
-
+require "../common/database.php";
 ?>
     <style>
       .error {
@@ -26,7 +26,7 @@ require "../controllers/controller.signup.php";
               <h3>Signup to your Account</h3>
             </div>
           </div>
-          <br />
+          <br/>
           <div class="form">
             <div class="form-group">
               <label for="fullName">Full Name<span class="important">*</span></label>
@@ -49,7 +49,8 @@ require "../controllers/controller.signup.php";
             <br />
             <div class="form-group">
               <label for="gender">Gender<span class="important">*</span></label>
-              <select class="form-control" id="gender" name="gender">
+              <select class="form-select" id="gender" name="gender">
+              <option>Choose...</option>
                 <option class="gender">Male</option>
                 <option class="gender" >Female</option>
                 <option class="gender">Other</option>
@@ -57,11 +58,11 @@ require "../controllers/controller.signup.php";
             </div>
             <br />
             <div class="form-group">
-              <label for="gender">country<span class="important">*</span></label>
-              <select class="form-control" id="country" name="country"> 
-              <option>select country</option>
+              <label for="country">country<span class="important">*</span></label>
+              <select class="form-select" id="country" name="country"> 
+              
                 <?php
-                 require "../common/database.php";
+                
                  $sql = "SELECT * FROM country";
                  $result = mysqli_query($conn,$sql);
                 if($result->num_rows >  0){
@@ -72,11 +73,12 @@ require "../controllers/controller.signup.php";
                 ?>
               </select>
             </div>
+             
             <br />
             <div class="form-group">
               <label for="gender">state<span class="important">*</span></label>
-              <select class="form-control" id="state" name="state"> 
-                <option>select state</option>
+              <select class="form-select" id="state" name="state"> 
+              
               </select>
             </div>
             <br />
@@ -156,6 +158,7 @@ require "../controllers/controller.signup.php";
              <label class="form-check-label">eating</label>
            </div> 
         </div>
+       
         <br />
             <div class="form-group">
               <input class="button-1 btn-primary" type="submit" name="submit"/>

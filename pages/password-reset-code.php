@@ -79,10 +79,10 @@ if(isset($_POST['password_update'])){
     $email = mysqli_real_escape_string($conn,$_POST['email']);
     $new_password = mysqli_real_escape_string($conn,$_POST['new_password']);
     $confirm_password = mysqli_real_escape_string($conn,$_POST['confirm_password']);
-    $taken = mysqli_real_escape_string($conn,$_POST['password_token']);
+    $token = mysqli_real_escape_string($conn,$_POST['password_token']);
 }
 
-if(!empty($taken)){
+if(!empty($token)){
    if(!empty($email)&&!empty($new_password) && !empty($confirm_password)) {
     $check_token= "SELECT verify_token FROM userdata  WHERE verify_token='$token'LIMIT 1";
 
