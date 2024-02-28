@@ -111,9 +111,11 @@ mysqli_close($conn);
       <div class="profile-card text-center">
     <?php 
     if (!empty($profile_image)) {
-        echo '<img src="' . $profile_image . '" alt="Profile Image" class="profile-image card-img-profile border rounded-circle" style="width: 150px; height: 150px;" />';
+        echo '<img src="' . $profile_image . '" alt="Profile Image" class="profile-image card-img-profile border rounded-circle"
+         style="width: 150px; height: 150px;" />';
     } else {
-        echo '<img src="https://as2.ftcdn.net/v2/jpg/05/89/93/27/1000_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.webp" alt="Default Profile Image" class="profile-image card-img-profile border rounded-circle" style="width: 150px; height: 150px;" />';
+        echo '<img src="https://as2.ftcdn.net/v2/jpg/05/89/93/27/1000_F_589932782_vQAEAZhHnq1QCGu5ikwrYaQD0Mmurm0N.webp" 
+        alt="Default Profile Image" class="profile-image card-img-profile border rounded-circle" style="width: 150px; height: 150px;" />';
     }
     ?>
 </div>
