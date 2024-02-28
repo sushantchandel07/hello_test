@@ -45,6 +45,7 @@ $sql = "SELECT * FROM userdata WHERE id=$userid";
 $result = mysqli_query($conn, $sql);
 $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
+
 // here i add country  list from database and display it in select option using joins
 $sqlcountry = "SELECT userdata.*, country.cname 
                FROM userdata
@@ -100,7 +101,7 @@ mysqli_close($conn);
       <div class="prodfile-para profile-btn">
       <a href="profile.php"><button class="profile-button m-2">
           Profile</button></a>
-          <!-- <a href="album.php"><button class="profile-button m-2">Images</button></a> -->
+         
           <a href="addalbum.php"><button class="profile-button m-2">Album</button></a>
       </div>
     </div>
@@ -108,7 +109,7 @@ mysqli_close($conn);
     <div class="main-profile d-flex justify-content-center  ">
       <div class="profile-card text-center ">
       <div class="profile-card text-center">
-    <?php
+    <?php 
     if (!empty($profile_image)) {
         echo '<img src="' . $profile_image . '" alt="Profile Image" class="profile-image card-img-profile border rounded-circle" style="width: 150px; height: 150px;" />';
     } else {

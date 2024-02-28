@@ -60,7 +60,7 @@ require "../common/database.php";
             <div class="form-group">
               <label for="country">country<span class="important">*</span></label>
               <select class="form-select" id="country" name="country"> 
-              
+              <option>choose..</option>
                 <?php
                 
                  $sql = "SELECT * FROM country";
@@ -74,7 +74,7 @@ require "../common/database.php";
               </select>
             </div>
              
-            <br />
+            <br/>
             <div class="form-group">
               <label for="gender">state<span class="important">*</span></label>
               <select class="form-select" id="state" name="state"> 

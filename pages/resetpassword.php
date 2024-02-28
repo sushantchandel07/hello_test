@@ -21,8 +21,9 @@
     <div class="section-image ">
         <img class="section-image-1" src="../photos/Rectangle.png" />
     </div>
+    
+    <form method="post" action="password-reset-code.php">
     <input name="password_token" class="d-none" value = "<?php if(isset($_GET['token'])){echo $_GET[ 'token'];}?>"/>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <div class="form-container ">
             <div class="form heading">
                 <div class="form-heading">
@@ -72,7 +73,7 @@
                 <br>
 
                 <div class="form-group">
-                    <button class="button-1 btn-primary" name="password" type="submit">Submit</button>
+                    <button class="button-1 btn-primary" name="password_update" type="submit">Submit</button>
                 </div>
                 <br />
             </div>

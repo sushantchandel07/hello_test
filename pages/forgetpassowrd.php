@@ -10,8 +10,6 @@ if (!isset($_SESSION['status'])) {
 }
 
 ?>
-
-
   <!--main section-->
     <div class="section d-flex">
       <div class="section-image">

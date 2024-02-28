@@ -5,6 +5,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['userid']) && !empty
     $userId = $_SESSION['userid'];
     $imageId = $_POST['image_id'];
     $sql = "DELETE FROM albums WHERE user_id = $userId AND album_id = $imageId";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $existingImagePath = $row['image_path'];
+    
+
     if (mysqli_query($conn, $sql)) {
         header("Location: gallery_display.php");
         exit();

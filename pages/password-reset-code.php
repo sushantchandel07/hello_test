@@ -33,7 +33,7 @@ function send_password_reset($get_name ,$get_email , $token){
     $email_template ="
       <h2>hello</h2>
       <h5>your are resiving this email because $get_name we recevied a password request from you</h5>
-      <a href='http://localhost/bootstrap-project/hello_test/pages/resetpassword.php?token=$token&email=$get_email'>click me</a>
+      <a href='http://localhost/bootstrapproject/hello_test/pages/resetpassword.php?token=$token&email=$get_email'>click me</a>
     ";
     $mail->Body    = $email_template;
     $mail->send();
@@ -75,52 +75,69 @@ if(isset($_POST['password_reset_link'])){
     }
 }
 
+
 if(isset($_POST['password_update'])){
     $email = mysqli_real_escape_string($conn,$_POST['email']);
     $new_password = mysqli_real_escape_string($conn,$_POST['new_password']);
     $confirm_password = mysqli_real_escape_string($conn,$_POST['confirm_password']);
     $token = mysqli_real_escape_string($conn,$_POST['password_token']);
-}
 
-if(!empty($token)){
-   if(!empty($email)&&!empty($new_password) && !empty($confirm_password)) {
-    $check_token= "SELECT verify_token FROM userdata  WHERE verify_token='$token'LIMIT 1";
+    if(!empty($email)&&!empty($new_password) && !empty($confirm_password)) {
+        $check_token= "SELECT verify_token FROM userdata  WHERE verify_token='$token' LIMIT 1";
+        $check_token_run = mysqli_query($conn, $check_token);
 
-    $check_token_run = mysqli_query($conn, $check_token);
+        if (mysqli_num_rows($check_token_run)>0){
+            if($new_password===$confirm_password){
+                $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+                $update_password=  "UPDATE userdata SET password = '$hashed_password' WHERE email= '$email' LIMIT 1";
+                $_update_password_run=mysqli_query($conn, $update_password);
 
-    if (mysqli_num_rows($check_token_run)>0){
-        
-        if($new_password===$confirm_password){
-             $update_password=  "UPDATE userdata SET password = '$new_password',verify_token=$token WHERE LIMIT 1";
-             $_update_password_run=mysqli_query($conn, $update_password);
-             if($_update_password_run){
-                  
-             }else{
-                $_SESSION['status']="new password successfully update";
-                header("Location:Login.php");
+                if($_update_password_run){
+                    $_SESSION['status']="new password successfully updated";
+                    header("Location:Login.php");
+                    exit(0);
+                }else{
+                    $_SESSION['status']="something went wrong";
+                    header("Location: resetpassword.php?token=$token&email=$email");
+                    exit(0);
+                }
+            }else{
+                $_SESSION['status']="password and confirm password does not match";
+                header("Location: resetpassword.php?token=$token&email=$email");
                 exit(0);
-             }
+            }
         }else{
-            $_SESSION['status']="password and confirm password does not match";
-    header("Location: resetpassword.php?token='$token'&email='$email'");
-    exit(0);
+            $_SESSION['status']="invalid token";
+            header("Location: resetpassword.php");
+            exit(0);
         }
-    }
-    else{
-        $_SESSION['status']="invalid token";
-    header("Location: resetpassword.php?token='$token'&email='$email'");
-    exit(0);
-    }
-   }else{
-    $_SESSION['status']="all field are mendetory";
-    header("Location: resetpassword.php?token='$token'&email='$email'");
-    exit(0);
-   }
-}else{
-    $_SESSION['status']="no token avaliable";
+    }else{
+        $_SESSION['status']="all field are mendetory";
         header("Location: resetpassword.php");
         exit(0);
+    }
+}else{
+    if(isset($_GET['token']) && isset($_GET['email'])){
+        $token = $_GET['token'];
+        $email = $_GET['email'];
+
+        $check_token= "SELECT verify_token FROM userdata  WHERE verify_token='$token' LIMIT 1";
+        $check_token_run = mysqli_query($conn, $check_token);
+
+        if (mysqli_num_rows($check_token_run)>0){
+           
+        }else{
+            $_SESSION['status']="invalid token";
+            header("Location: resetpassword.php");
+            exit(0);
+        }
+    }else{
+        $_SESSION['status']="no token avaliable";
+        header("Location: resetpassword.php");
+        exit(0);
+    }
 }
-
-
 ?>
+
+
+
