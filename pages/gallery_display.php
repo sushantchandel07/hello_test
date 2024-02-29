@@ -49,9 +49,10 @@ if (mysqli_num_rows($result) > 0) {
             echo "<div class='border'>";
 
             echo "<img src='$imagePath' class='imagestyle' style='width: 350px; height: 350px;'  alt='Album Image' />";
+            echo "<h4>$albumName</h4>";
             echo "<form method='post' action='delete_image.php'>";
             echo "<input type='hidden' name='image_id' value='$imageId' />";
-            echo "<h4>$albumName</h4>";
+            
             echo "<button type='submit' id='deletealbum' class='btn btn-danger'>Delete</button>";
             echo "</form>";
             echo "</div>";
@@ -71,13 +72,4 @@ mysqli_close($conn);
 
 </div>
 <?php include "../common/footer.php" ?>
-<script>
-    document.getElementById("deletealbum").addEventListener("click", function() {
-        
-        if (confirm("Are you sure you want to delete your profile image?")) {
-          
-            window.location.href = "delete_image.php";
-        }
-    });
-</script>
 
