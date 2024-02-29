@@ -24,7 +24,7 @@ session_start();
          Album
         </button></a>
       </div>
-    </div>
+    </div>  
 <hr/>
 <?php
 require "../common/database.php";

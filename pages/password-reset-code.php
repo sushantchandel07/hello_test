@@ -89,7 +89,7 @@ if(isset($_POST['password_update'])){
         if (mysqli_num_rows($check_token_run)>0){
             if($new_password===$confirm_password){
                 $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-                $update_password=  "UPDATE userdata SET password = '$hashed_password' WHERE email= '$email' LIMIT 1";
+                $update_password=  "UPDATE userdata SET password = '$hashed_password',verify_token = NULL WHERE email= '$email' LIMIT 1";
                 $_update_password_run=mysqli_query($conn, $update_password);
 
                 if($_update_password_run){

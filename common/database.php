@@ -9,5 +9,4 @@ $conn = new mysqli($host, $dbUsername , $pass ,$dbname );
 if($conn){
     echo "";
 }
-
 ?>
