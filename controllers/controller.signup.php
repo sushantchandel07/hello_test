@@ -1,7 +1,7 @@
 <?php
   error_reporting(E_ALL);
   ini_set('display_errors', 1);
-  $fullNameErr = $dobErr = $numberErr =$genderErr= $emailErr = $passwordErr = $confirmPasswordErr =$stateErr=$hobbiesErr="";
+  $fullNameErr = $dobErr = $numberErr =$genderError= $emailErr = $passwordErr = $confirmPasswordErr=$countryErr=$stateErr=$hobbiesErr="";
   $fullName = $dob = $gender = $number = $email = $password = $confirmPassword = $country = $state=$hobbies="";
   $errormessage=$successmessage="";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -33,6 +33,26 @@
     } else {
       $number = test_input($_POST["number"]);
   }
+    // gender validation
+   if (empty($_POST["gender"]) || $_POST["gender"] == "Choose...") {
+      $genderError = "Please select a gender.";
+     } else {
+      $gender = test_input($_POST["gender"]);
+    }
+
+   // country validation
+   if (empty($_POST["country"]) || $_POST["country"] == "Choose...") {
+   $countryErr = "Please select a country.";
+   } else {
+    $country = test_input($_POST["country"]);
+   }
+
+   // state validation
+   if (empty($_POST["state"]) || $_POST["state"] == "Choose...") {
+      $stateErr = "Please select a state.";
+     } else {
+      $state = test_input($_POST["state"]);
+    }
 
   // Email Validation
   if (empty($_POST["email"])) {
@@ -44,17 +64,21 @@
     }
 
     // password Validation
-  if (empty($_POST["password"])) {
+    if (empty($_POST["password"])) {
       $passwordErr = "Password is required";
-    } elseif (strlen($_POST["password"])!=8 ) {
-      $passwordErr = "Password must of 8 characters";
-    } else {
+  } elseif (strlen($_POST["password"]) < 8) {
+      $passwordErr = "Password must be at least 8 characters long";
+  } elseif (!preg_match("/[!@#$%^&*()\-_=+{};:,<.>]/", $_POST["password"])) {
+      $passwordErr = "Password must contain at least one special character";
+  } elseif (strlen($_POST["password"]) > 15) {
+      $passwordErr = "Password can be maximum of 15 characters";
+  } else {
       $password = test_input($_POST["password"]);
   }
   //  Confirm Password Validation
   if (empty($_POST["confirmPassword"])) {
      $confirmPasswordErr = "Confirm Password is required";
-    } elseif (strlen($_POST["confirmPassword"]) !=8) {
+    } elseif (strlen($_POST["confirmPassword"]) >15) {
      $confirmPasswordErr = "Password must be of 8 characters";
     } else {
      $confirmPassword = test_input($_POST["confirmPassword"]);
@@ -77,8 +101,9 @@
 }
 
 // here i bind everything that without filling all the fields and without clearing the all error form can not be submitted
-if (empty($fullNameErr) && empty($dobErr) && empty($numberErr) && empty($genderErr) && empty($emailErr) && empty($passwordErr) && empty($confirmPasswordErr) && 
-        !empty($fullName) && !empty($dob) && !empty($number) && !empty($email) && !empty($password) && !empty($confirmPassword)&& !empty($gender)&& !empty($country)&& !empty($state) ) {
+if (empty($fullNameErr) && empty($dobErr) && empty($numberErr) && empty($emailErr) && empty($passwordErr)&& empty($confirmPasswordErr)&& empty($genderError) && empty($countryErr)&&
+    !empty($fullName) && !empty($dob) && !empty($number) && !empty($email) && !empty($password) && !empty($confirmPassword)
+    && !empty($gender)&& !empty($country)&& !empty($state) ) {
         
         if(isset($_POST[ 'submit'])){
           $name= $_POST['name'];

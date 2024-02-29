@@ -56,6 +56,7 @@ require "../common/database.php";
                 <option class="gender">Other</option>
               </select>
             </div>
+            <span class="error"><?php echo $genderError;?></span>
             <br />
             <div class="form-group">
               <label for="country">Country<span class="important">*</span></label>
@@ -73,7 +74,7 @@ require "../common/database.php";
                 ?>
               </select>
             </div>
-             
+            <span class="error"><?php echo $countryErr;?></span>
             <br/>
             <div class="form-group">
               <label for="gender">State<span class="important">*</span></label>
