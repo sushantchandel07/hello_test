@@ -1,5 +1,6 @@
 <?php
 require '../common/database.php';
+
 if(isset($_POST['type']) && $_POST['type'] == "countrydata"){
     $sql = "SELECT * FROM country";
     $query = mysqli_query($conn, $sql) or die("query unsuccessful.");

@@ -107,15 +107,30 @@
           <li class="nav-item">
               <a class="nav-link text-light fs-4 text-opacity-50" href="about.php">About</a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link text-light fs-4 text-opacity-50" href="profile.php">Profile</a>
-          </li>
-          <li class="nav-item"> 
-              <a class="nav-link text-light fs-4 text-opacity-50" href="Login.php">Login</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link text-light fs-5 text-opacity-50" href="signup.php">Signup</a>
-          </li>
+          <?php
+           if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+           echo "<div class='profile'>
+           <i class='fa-solid fa-user pt-2'></i>
+           <p class='profile font-size'><a href='profile.php'>Profile</a></p>
+           </div>";
+           }else{
+                "";
+           }
+           ?>
+          <?php
+          if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+         echo "<a href ='logout.php'><button class = 'logout'>logout</button> </a>";
+          } else {
+          echo "<div class='d-flex profile-2'>
+          <p class='login font-size border-info p-2 rounded text-white'>
+          <a href='Login.php'>Login</a>
+          </p>
+          <p class='signup font-size border-info p-2 bg-primary rounded text-white'>
+          <a href='signup.php'>Signup</a>
+          </p>
+          </div>";
+          }
+        ?>
       </ul>
   </div>
 </div>

@@ -105,7 +105,7 @@ session_start();
   <div class="offcanvas-body">
       <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-              <a class="nav-link active text-light fs-1 fd-bold" aria-current="page" href="../index.php">Home</a>
+              <a class="nav-link active text-light fs-1 fd-bold" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
               <a class="nav-link text-light fs-4 text-opacity-50" href="pages/about.php">About</a>

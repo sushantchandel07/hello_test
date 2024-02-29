@@ -33,7 +33,7 @@ function send_password_reset($get_name ,$get_email , $token){
     $email_template ="
       <h2>hello</h2>
       <h5>your are resiving this email because $get_name we recevied a password request from you</h5>
-      <a href='http://localhost/bootstrapproject/hello_test/pages/resetpassword.php?token=$token&email=$get_email'>click me</a>
+      <a href='http://localhost/bootstrapproject1/hello_test/pages/resetpassword.php?token=$token&email=$get_email'>click me</a>
     ";
     $mail->Body    = $email_template;
     $mail->send();

@@ -1,52 +1,6 @@
-<?php
-session_start();
-include "../common/header.php";
-require "../common/database.php";
-
-if (!isset($_SESSION['userid']) || $_SESSION['userid'] == '') {
-    header("Location: Login.php");
-}
-
-$userid = $_SESSION['userid'];
-
-
-$sql = "SELECT * FROM userdata WHERE id=$userid";
-$result = mysqli_query($conn, $sql);
-$user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-$sqlCountryList = "SELECT * FROM country";
-$countryListResult = mysqli_query($conn, $sqlCountryList);
-
-$sqlStateList = "SELECT * FROM state";
-$stateListResult = mysqli_query($conn, $sqlStateList);
-
-if (!$user) {
-    header("Location: login.php");
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_profile'])) {
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $countryId = mysqli_real_escape_string($conn, $_POST['country']);
-    $stateId = mysqli_real_escape_string($conn, $_POST['state']);
-    $dob = mysqli_real_escape_string($conn, $_POST['dob']);
-    $gender = mysqli_real_escape_string($conn, $_POST['gender']);
-    
-    
-
-    $updateSql = "UPDATE userdata SET name='$name', email='$email', country_id=$countryId, state_id=$stateId, date_of_birth='$dob', gender='$gender' WHERE id=$userid";
-
-    if (mysqli_query($conn, $updateSql)) {
-        header("Location: profile.php");
-        exit();
-    } else {
-        echo "Error updating record: " . mysqli_error($conn);
-    }
-}
-
-mysqli_close($conn);
+<?php 
+require "../controllers/controller.updateprofile.php";
 ?>
-
 <div class="profile-main-section-image">
       <img src="../photos/Rectangle 619.png " alt="Image" width="100%" />
     </div>
@@ -112,8 +66,7 @@ mysqli_close($conn);
         <select class="form-select" id="gender" name="gender">
             <option value="Male" <?php echo ($user['gender'] == 'Male') ? 'selected' : ''; ?>>Male</option>
             <option value="Female" <?php echo ($user['gender'] == 'Female') ? 'selected' : ''; ?>>Female</option>
-            <option value="other" <?php echo ($user['gender'] == 'other') ? 'selected' : ''; ?>>Female</option>
-            
+            <option value="other" <?php echo ($user['gender'] == 'other') ? 'selected' : ''; ?>>Other</option>
         </select>
         </div>
     </div>

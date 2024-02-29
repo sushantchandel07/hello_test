@@ -3,10 +3,25 @@ session_start();
 require "../common/database.php";
 include "../common/header.php";
 
-
-
+$emailError ="";
+if (isset($_POST['submit'])) {
+    $email = $_POST["email"];
+    
+    // Validate email address
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $emailError = "Invalid email format.";
+    }elseif(empty($email)){
+      $emailError="Email is required";
+    }
+  }
 if (!isset($_SESSION['status'])) {
      
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if(empty($_POST['email'])){
+  $emailError = "Email is Required";
+}
+
 }
 
 ?>

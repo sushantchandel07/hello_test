@@ -58,7 +58,7 @@ require "../common/database.php";
             </div>
             <br />
             <div class="form-group">
-              <label for="country">country<span class="important">*</span></label>
+              <label for="country">Country<span class="important">*</span></label>
               <select class="form-select" id="country" name="country"> 
               <option>choose..</option>
                 <?php
@@ -76,7 +76,7 @@ require "../common/database.php";
              
             <br/>
             <div class="form-group">
-              <label for="gender">state<span class="important">*</span></label>
+              <label for="gender">State<span class="important">*</span></label>
               <select class="form-select" id="state" name="state"> 
               
               </select>
@@ -109,7 +109,7 @@ require "../common/database.php";
                 value="<?php echo htmlspecialchars($email); ?>"
               />
               <span class="error"><?php echo $emailErr;?></span>
-              <span class="text-danger"><?php echo $errormessage ? "<p>$errormessage.</p>" :"" ?></span>
+              <span class="text-danger"><?php echo $errormessage  ?></span>
             </div>
             <br />
             <div class="form-group">
@@ -155,7 +155,7 @@ require "../common/database.php";
            
            <div class="form-check">
              <input class="form-check-input" type="checkbox" name="hobbies[]" value="gaming">
-             <label class="form-check-label">eating</label>
+             <label class="form-check-label">Eating</label>
            </div> 
         </div>
        
