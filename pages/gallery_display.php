@@ -2,8 +2,6 @@
 session_start();
  include "../common/header.php";
 ?>
-
-   
     <div class="album-section-image">
       <img src="../photos/Rectangle 619.png " alt="Image" width="100%" />
     </div>
@@ -46,17 +44,17 @@ if (mysqli_num_rows($result) > 0) {
         while ($imageRow = mysqli_fetch_assoc($resultImages)) {
             $imageId = $imageRow['album_id'];
             $imagePath = $imageRow['image_path'];
-            echo "<div class='border'>";
-
-            echo "<img src='$imagePath' class='imagestyle' style='width: 350px; height: 350px;'  alt='Album Image' />";
-            echo "<h4>$albumName</h4>";
-            echo "<form method='post' action='delete_image.php'>";
-            echo "<input type='hidden' name='image_id' value='$imageId' />";
-            
-            echo "<button type='submit' id='deletealbum' class='btn btn-danger'>Delete</button>";
-            echo "</form>";
-            echo "</div>";
-        }
+            echo "<div class='d-flex '>
+            <div>
+            <img src='$imagePath' class='imagestyle' style='width: 350px; height: 350px;'  alt='Album Image' />
+            <h4>$albumName</h4>
+            <form method='post' action='delete_image.php'>
+            <input type='hidden' name='image_id' value='$imageId' />
+            <button type='submit' id='deletealbum' class='btn btn-danger'>Delete</button>
+            </form>
+            </div>
+            </div>";
+          }
        
         echo "</div>";
     }
@@ -65,11 +63,7 @@ if (mysqli_num_rows($result) > 0) {
 }
 mysqli_close($conn);
 ?>
-
-
 <div>
-
-
 </div>
 <?php include "../common/footer.php" ?>
 

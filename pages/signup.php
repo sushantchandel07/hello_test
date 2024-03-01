@@ -1,18 +1,10 @@
 <?php 
-
 require "../controllers/controller.signup.php";
 require "../common/database.php";
+include "../common/header.php" ;
 ?>
-    <style>
-      .error {
-        color: red;
-      }
-.important{
-  color: red;
-}
-    </style>
-  <!--header-->
-  <?php include "../common/header.php" ?>
+   
+
   <!--main section-->
     <div class="section d-flex">
       <div class="section-image">

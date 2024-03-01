@@ -97,6 +97,7 @@ require "../controllers/controller.updateprofile.php";
         })
       })
       </script>
-</body>
-</html>
+
+
+
 <?php require "../common/footer.php" ?>

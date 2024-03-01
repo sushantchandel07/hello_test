@@ -21,9 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if(empty($_POST['email'])){
   $emailError = "Email is Required";
 }
-
 }
-
 ?>
   <!--main section-->
     <div class="section d-flex">
@@ -53,11 +51,9 @@ if(empty($_POST['email'])){
               placeholder="Your E-mail"
               name="email"
             />
-            <span class="error"><?php echo $emailErr;?></span>
+            <span class="error"><?php echo $emailError;?></span>
           </div>
           <br/>
-  
-         
           <div class="form-group">
             <button class="button-1 btn-primary" type="submit" name="password_reset_link" >submit</button>
           </div>

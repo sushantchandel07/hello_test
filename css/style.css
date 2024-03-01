@@ -3,6 +3,7 @@
   padding: 0px;
   box-sizing: border-box;
 }
+    
 
 /* +++++++++++++++++++++++++navbar style++++++++++++++++++++++++++++++ */
 .navbar {
@@ -70,9 +71,27 @@
 .navbar .nav-side-list {
   margin-right: 90px;
 }
-
-
-
+/* login / logout button */
+.login a{
+  color: white;
+  text-decoration: none;
+ }
+.logout{
+  color:white;
+ 
+  border:none;
+  border-radius:3px;
+  padding:5px 14px;
+  background-color: rgb(56, 146, 187);
+  font-size:18px;
+  }
+  /* error message of signup page */
+  .error {
+    color: red;
+  }
+  .important{
+   color: red;
+}
 /* ++++++++++++++++++++++++++++++++++++++ */
 .font-size {
   font-size: 20px;
@@ -205,7 +224,7 @@ img.secondary-img {
 }
 
 .about-paragraph {
-  word-spacing: 10px;
+  word-spacing: 5px;
   color: rgb(61, 61, 61);
 }
 
@@ -238,7 +257,7 @@ img.secondary-img {
 
 /* ++++++++++++++++++++++++++==index page first row of cards+++++++++++++++++++++++===  */
 .card-line-first {
-  margin-top: 200px;
+  margin-top: 100px;
 }
 
 .card-1 {
@@ -246,7 +265,6 @@ img.secondary-img {
   margin-top: 60px;
   box-shadow: none;
   width: 22rem;
-  height: 30rem;
   font-weight: 500;
   border-radius: 20px;
   background-color: #fff;
@@ -264,14 +282,13 @@ img.secondary-img {
   padding: 20px;
 }
 .card-body-1 p {
-  word-spacing: 5px;
-  line-height: 2;
+  word-spacing: 3px;
   font-size: 20px;
 }
 
 /* +++++++++++++++++++++index page secand row of cards css+++++++++++++++++++++++++++++= */
 .card-line-second {
-  margin-top: 150px;
+  margin-top: 90px;
 }
 .card-2 {
   margin: 40px;
@@ -281,7 +298,7 @@ img.secondary-img {
   height: 28rem;
   border-radius: 20px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
 }
 .second-cards-heading h2 {
   font-size: 60px;
@@ -309,7 +326,7 @@ img.secondary-img {
 }
 /* +++++++++++++++++++++++++++++row-3 card-3 of index.html+++++++++++++++++++++++++++++++= */
 .card-line-third {
-  margin-top: 150px;
+  margin-top: 100px;
 }
 .card-3 {
   margin: 40px;
@@ -394,9 +411,9 @@ h2 {
 
 .profile-list ul li {
   list-style: none;
-  line-height: 3em;
-  font-size: 20px;
+  line-height: 2.5em;
 }
+
 .profile-button a {
   color: white;
   text-decoration: none;
@@ -426,7 +443,7 @@ h2 {
 }
 
 .section-image-2 {
-  width: 700px;
+  width: 500px;
   height: 1000px;
 }
 
@@ -465,9 +482,14 @@ h2 {
   top: 50%;
   cursor: pointer;
 }
-
+.form-container {
+  margin-left: 100px;
+}
 
 /* ++++++++++++++++++++++++++++++media query+++++++++++++++++++++++++++++++++++++ */
+
+
+
 @media screen and (max-width: 1000px) {
   .section-image-2 {
     display: none;
@@ -512,7 +534,7 @@ h2 {
     height: 400px;
   }
   .about-heading h1 {
-    font-size: 40px;
+    font-size: 20px;
     margin-bottom: 20px;
   }
   .album-img {
@@ -557,11 +579,12 @@ h2 {
   .card-2 {
     height: 24rem;
   }
+  
+
 }
 @media screen and (max-width: 1450px) {
-  .secondary-img {
+  img .secondary-img  {
     max-height: 45vh;
-    display: none;
   }
   .content-overlay {
     position: absolute;
@@ -575,13 +598,17 @@ h2 {
   .last-right-block {
     margin-top: 90px;
   }
+    
 }
 @media screen and (min-width: 1600px) {
   .form-container {
-    margin-left: 120px;
+    margin-left: 100px;
   }
   .profile-list {
     padding-left: 40px;
+  }
+  .navbar-contain{
+    max-width:1570px;
   }
 }
 
@@ -596,7 +623,7 @@ h2 {
 
 @media screen and (min-width: 4000px) {
   img.secondary-img {
-    width: 1100px;
+    width: 1700px;
     position: absolute;
     top: 0%;
     right: 10%;

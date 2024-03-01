@@ -79,17 +79,13 @@
   if (empty($_POST["confirmPassword"])) {
      $confirmPasswordErr = "Confirm Password is required";
     } elseif (strlen($_POST["confirmPassword"]) < 8) {
-      $passwordErr = "Password must be at least 8 characters long";
+      $confirmPasswordErr = "Password must be at least 8 characters long";
   } elseif (!preg_match("/[!@#$%^&*()\-_=+{};:,<.>]/", $_POST["confirmPassword"])) {
-      $passwordErr = "Password must contain at least one special character";
+    $confirmPasswordErr = "Password must contain at least one special character";
   } elseif (strlen($_POST["confirmPassword"]) > 15) {
-      $passwordErr = "Password can be maximum of 15 characters";
+    $confirmPasswordErr = "Password can be maximum of 15 characters";
   } else {
-      $password = test_input($_POST["password"]);
-  }
-  // Country Validation
-  if (empty($_POST["country"])) {
-     $fullNameErr = "country is required";
+      $confirmPassword = test_input($_POST["confirmPassword"]);
   }
   // Here we check that password and confirmpassword is equel
   if ($passwordErr == "" && $confirmPasswordErr == "") {

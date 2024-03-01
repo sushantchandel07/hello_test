@@ -1,8 +1,5 @@
-
-    <!--header-->
+   <!--header-->
     <?php include "../common/header.php" ?>
-
-
     <div class="album-section-image">
       <img src="../photos/Rectangle 619.png " alt="Image" width="100%" />
     </div>
@@ -66,13 +63,4 @@
         </div>
       </div>
     </div>
-
-
-
-
-
     <?php include "../common/footer.php" ?>
-
-
-  </body>
-  

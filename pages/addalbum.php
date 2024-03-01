@@ -17,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         $sql = "INSERT INTO albums (user_id, album_name, image_path) VALUES ('$userid', '$albumName', '$imagePath')";
         mysqli_query($conn, $sql);
     }
-   
     header("Location: gallery_display.php");
     exit();
 }

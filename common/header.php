@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>bootstrapproject</title>
+    <link rel="stylesheet" href="../css/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -17,38 +18,14 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../css/style.css" />
-    <style>
-    .login a{
-  color: white;
-  text-decoration: none;
-}
-      .logout{
-        color:white;
-        background-color:;
-        border:none;
-        border-radius:3px;
-        padding:5px 14px;
-        background-color: rgb(56, 146, 187);
-        font-size:18px;
-      }
-     
-    </style>
-  </head>
-  <body class="d-flex flex-column min-vh-100">
-
-  <?php
-// session_start();
-?>
-<nav class="navbar">
-      <div class="container-fluid">
-      <div class="nav-logo">
+    
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+    <nav class="navbar">
+        <div class="container">
+         <div class="nav-logo">
         <a href="../index.php"><img src="../photos/logo.png" alt="Logo" /></a>
-        </div>
-
-          
-          
-
+    </div>
           <!-- Desktop Navigation -->
         <div class="nav-center-list pt-2">
             <div class="nav-side-list-1 d-flex">
@@ -82,12 +59,9 @@
           </p>
           </div>";
           }
-        ?>
-
-              
+        ?>  
            </div>
-          </div>
-
+        </div>
           <!-- Mobile Navigation -->
         <!-- Toggle Button for Mobile -->
 <button class="navbar-toggler bg-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">

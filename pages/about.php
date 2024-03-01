@@ -1,9 +1,6 @@
 <?php
 include '../common/header.php';
 ?>
-
-
-
     <div class="about-section container-fluid ">
         <div class="container">
             <div class="about-heading mt-5">
@@ -23,7 +20,7 @@ include '../common/header.php';
                     at the end of the rental period.
                 </blockquote>
             </div>
-            <div class="second-para d-flex justify-content-center ">
+            <div class="second-para d-flex  ">
                 <div class="second-para-1  about-paragraph flex-wrap">
                     <blockquote>
                         Car safe is a platform that allows users to rent cars from private
@@ -104,10 +101,5 @@ include '../common/header.php';
             <button class="about-section-3-button">Contact Us</button>
           </div>
          </div>
-
-
-
-
-
     <?php include "../common/footer.php" ?>
   

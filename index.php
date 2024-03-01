@@ -1,8 +1,6 @@
 <?php
 session_start();
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,28 +21,12 @@ session_start();
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="css/style.css" />
-    <style>
-    .login a{
-  color: white;
-  text-decoration: none;
-}
-      .logout{
-        color:white;
-        background-color:;
-        border:none;
-        border-radius:3px;
-        padding:5px 14px;
-        background-color: rgb(56, 146, 187);
-        font-size:18px;
-      }
-     
-    </style>
   </head>
   <body>
   
 
   <nav class="navbar">
-      <div class="container-fluid">
+      <div class="container navbar-contain">
       <div class="nav-logo">
         <a href="../index.php"><img src="photos/logo.png" alt="Logo" /></a>
         </div>
