@@ -1,4 +1,4 @@
-<?php 
+<?php
 require "../controllers/controller.updateprofile.php";
 ?>
 <div class="profile-main-section-image">
@@ -10,7 +10,7 @@ require "../controllers/controller.updateprofile.php";
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quos
           maiores quia ullam<br />
           maxime eligendi ipsam aliquam totam at. Consequatur. Lorem ipsum dolor
-          sit amet.                                                  
+          sit amet.                                                 
         </p>
       </div>
       <div class="prodfile-para profile-btn">
@@ -20,18 +20,34 @@ require "../controllers/controller.updateprofile.php";
           <a href="addalbum.php"><button class="profile-button m-2">Album</button></a>
       </div>
     </div>
-  
-<form action="update_profile.php" method="post" class="form-control  text-center  ">
-    <div class=" container d-flex  justify-content-between  flex-wrap">
-    <div class="">
-        <div>
-        <label for="name">Name:</label>
-        <input class="form-control" type="text" id="name" name="name" value="<?php echo $user['name']; ?>">
-        </div><br><br><br>
-
-        <div>
-        <label for="country">Country:</label>
-        <select id="country" class="form-select" name="country">
+<div class="container p-4 bg-secondary-subtle rounded mt-4 mb-4">
+  <div>
+    <h1>Update Profile</h1>
+  </div>
+<form method='post' action = "#" class='row g-3'>
+  <div class='col-md-6'>
+    <span>Username</span>
+    <input class="form-control" type="text" id="name" name="name" value="<?php echo $user['name']; ?>">
+  </div>
+  <div class="col-md-6">
+    <span>Date-of-Birth</span>
+    <input class="form-control" type="date" id="dob" name="dob" value="<?php echo $user['date_of_birth']; ?>">
+  </div>
+  <div class='col-md-6'>
+    <span>Gender</span>
+    <select class="form-select" id="gender" name="gender">
+            <option value="Male" <?php echo ($user['gender'] == 'Male') ? 'selected' : ''; ?>>Male</option>
+            <option value="Female" <?php echo ($user['gender'] == 'Female') ? 'selected' : ''; ?>>Female</option>
+            <option value="other" <?php echo ($user['gender'] == 'other') ? 'selected' : ''; ?>>Other</option>
+        </select>
+  </div>
+  <div class='col-lg-6'>
+    <span>Number</span>
+    <input class='form-control' type = "text" id="" name="number" value="<?php echo $user['phone']; ?>" >
+  </div>
+  <div class="col-lg-6">
+    <span>Country</span>
+    <select id="country" class="form-select" name="country">
         <option>choose..</option>
         <?php
         while ($country = mysqli_fetch_assoc($countryListResult)) {
@@ -39,40 +55,49 @@ require "../controllers/controller.updateprofile.php";
         }
         ?>
         </select>
-        </div>
-        <br><br><br>
-        <div>
-        <label for="state">State:</label>
-        <select class="form-select" id="state" name="state"> 
-              <option>choose..</option>
-              </select>
-        </div>
-        
+  </div>
+  <div class='col-md-6'>
+    <span>State</span>
+    <select class="form-select" id="state" name="state">
+        <option>choose..</option>
+        <?php
+        // Loop through the states fetched from the database
+        while ($stateData = mysqli_fetch_assoc($stateListResult)) {
+            // Check if the current state ID matches the user's state ID
+            if ($stateData['sid'] == $user['state_id']) {
+                // If it matches, set the selected attribute
+                echo "<option value=\"{$stateData['sid']}\" selected>{$stateData['sname']}</option>";
+            } else {
+                echo "<option value=\"{$stateData['sid']}\">{$stateData['sname']}</option>";
+            }
+        }
+        ?>
+    </select>
+</div>
+<div class="form-group d-flex flex-wrap">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="hobbies[]" value="reading" <?php echo (in_array('reading', explode(',', $user['hobbies']))) ? 'checked' : ''; ?>>
+        <label class="form-check-label">Reading</label>
+    </div>&nbsp;&nbsp;
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="hobbies[]" value="traveling" <?php echo (in_array('traveling', explode(',', $user['hobbies']))) ? 'checked' : ''; ?>>
+        <label class="form-check-label">Traveling</label>
+    </div>&nbsp;&nbsp;
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="hobbies[]" value="gaming" <?php echo (in_array('gaming', explode(',', $user['hobbies']))) ? 'checked' : ''; ?>>
+        <label class="form-check-label">Gaming</label>
+    </div>&nbsp;&nbsp;
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="hobbies[]" value="eating" <?php echo (in_array('eating', explode(',', $user['hobbies']))) ? 'checked' : ''; ?>>
+        <label class="form-check-label">Eating</label>
     </div>
-
-    <div>
-    <div>
-        <label class="form_label" for="email">Email:</label>
-        <input class="form-control" type="email" id="email" name="email" value="<?php echo $user['email']; ?>" >
-        </div><br><br><br>
-        
-        <div>
-        <label for="dob">Date of Birth:</label>
-        <input class="form-control" type="date" id="dob" name="dob" value="<?php echo $user['date_of_birth']; ?>">
-        </div>
-        <br><br><br>
-        <div>
-        <label for="gender">Gender:</label>
-        <select class="form-select" id="gender" name="gender">
-            <option value="Male" <?php echo ($user['gender'] == 'Male') ? 'selected' : ''; ?>>Male</option>
-            <option value="Female" <?php echo ($user['gender'] == 'Female') ? 'selected' : ''; ?>>Female</option>
-            <option value="other" <?php echo ($user['gender'] == 'other') ? 'selected' : ''; ?>>Other</option>
-        </select>
-        </div>
-    </div>
-    </div>
-    <button class="btn btn-success" type="submit" name="update_profile">Update Profile</button>
+</div>
+        <div class='col-md-6'>
+        <button class="btn btn-success" type="submit" name="update_profile">Update Profile</button>
+      </div>
+  </div>
 </form>
+</div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       $(document).ready(function(){
@@ -97,7 +122,4 @@ require "../controllers/controller.updateprofile.php";
         })
       })
       </script>
-
-
-
 <?php require "../common/footer.php" ?>

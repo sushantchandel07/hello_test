@@ -28,19 +28,16 @@ function send_password_reset($get_name ,$get_email , $token){
     $mail->addAddress($get_email);  
 
     $mail->isHTML(true);                                  
-    $mail->Subject = 'mail send from carsafe';
+    $mail->Subject = 'Mail send from carsafe';
 
     $email_template ="
       <h2>hello</h2>
       <h5>your are resiving this email because $get_name we recevied a password request from you</h5>
       <a href='http://localhost/bootstrapproject1/hello_test/pages/resetpassword.php?token=$token&email=$get_email'>click me</a>
     ";
-    $mail->Body = $email_template;
+    $mail->Body    = $email_template;
     $mail->send();
 }
-
-
-
 if(isset($_POST['password_reset_link'])){
 
     $email = mysqli_real_escape_string($conn,$_POST['email']);
@@ -77,19 +74,16 @@ if(isset($_POST['password_reset_link'])){
 
 
 if(isset($_POST['password_update'])){
-    // here i am adding  validation for the token and password match or not  
     $email = mysqli_real_escape_string($conn,$_POST['email']);
     $new_password = mysqli_real_escape_string($conn,$_POST['new_password']);
     $confirm_password = mysqli_real_escape_string($conn,$_POST['confirm_password']);
     $token = mysqli_real_escape_string($conn,$_POST['password_token']);
 
-   
     if(!empty($email)&&!empty($new_password) && !empty($confirm_password)) {
         $check_token= "SELECT verify_token FROM userdata  WHERE verify_token='$token' LIMIT 1";
         $check_token_run = mysqli_query($conn, $check_token);
 
         if (mysqli_num_rows($check_token_run)>0){
-             // here i check that user  enter new password and confirm password is same or not 
             if($new_password===$confirm_password){
                 $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
                 $update_password=  "UPDATE userdata SET password = '$hashed_password',verify_token = NULL WHERE email= '$email' LIMIT 1";
@@ -100,7 +94,7 @@ if(isset($_POST['password_update'])){
                     header("Location:Login.php");
                     exit(0);
                 }else{
-                    $_SESSION['status']="something went wrong";
+                    $_SESSION['status']="Something went wrong";
                     header("Location: resetpassword.php?token=$token&email=$email");
                     exit(0);
                 }
@@ -128,7 +122,8 @@ if(isset($_POST['password_update'])){
         $check_token_run = mysqli_query($conn, $check_token);
 
         if (mysqli_num_rows($check_token_run)>0){
-           
+            include 'resetpassword.php';
+            exit(0);                                          
         }else{
             $_SESSION['status']="invalid token";
             header("Location: resetpassword.php");
@@ -141,6 +136,5 @@ if(isset($_POST['password_update'])){
     }
 }
 ?>
-
 
 

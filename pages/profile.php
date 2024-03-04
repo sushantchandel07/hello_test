@@ -22,7 +22,7 @@ require "../controllers/controller.updateprofile.php";
     </div>
     <hr />
     <div class="main-profile d-flex justify-content-center  ">
-      <div class="profile-card text-center ">
+      <div class="profile-card text-center">
       <div class="profile-card text-center">
      <?php 
     if (!empty($profile_image)) {
@@ -35,14 +35,14 @@ require "../controllers/controller.updateprofile.php";
     ?> 
 </div>
     <form method="post" enctype="multipart/form-data">
-      <input type="file" name="profile_image" accept="image/*" />
+      <input type="file" name="profile_image" accept="image/*" required/>
       <br><br>
       <button class="btn btn-primary" type="submit" name="upload_image">Upload Image</button>
       <button class="btn btn-danger" type="button" id="deleteImageBtn">Delete Image</button>
     </form>
       <div class="profile-card-body">
-          <h3 class="profile-name"><?php echo $name?></h3>
-          <p class="profile-email"><?php echo $email ?></p>
+          <h3 class="profile-name"><?php echo ucfirst($name)?></h3>
+          <p class="profile-email"><?php echo ucfirst($email) ?></p>
           <p class="profile-number"><?php echo $phone ?></p>
           <a href="update_profile.php"><button class="btn btn-primary">edit profile</button></a>
       </div>

@@ -1,19 +1,15 @@
 <?php
-session_start();
+include "../common/header.php";
 require "../common/database.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $userid = $_SESSION['userid'];
     $albumName = mysqli_real_escape_string($conn, $_POST['album_name']);
     $uploadDir = "../uploads/";
     $images = $_FILES['uploadfile'];
-    $albumDir = $uploadDir . $userid . "_" . time() . "/";
-    mkdir($albumDir, 0777, true); 
     foreach ($images['name'] as $key => $image) {
         $tempName = $images['tmp_name'][$key];
-        $imagePath = $albumDir . $image;
-        
+        $imagePath = $uploadDir . $image;
         move_uploaded_file($tempName, $imagePath);
-        
         $sql = "INSERT INTO albums (user_id, album_name, image_path) VALUES ('$userid', '$albumName', '$imagePath')";
         mysqli_query($conn, $sql);
     }
@@ -22,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 }
 ?>
 
-<?php include "../common/header.php";?>
 <div class="profile-main-section-image">
     <img src="../photos/Rectangle 619.png " alt="Image" width="100%" />
 </div>
@@ -49,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <form action="" method="post" enctype="multipart/form-data">
         <div class="add-album-input-2">
             <label for="album_name">Album Name:</label>
-            <input type="text" name="album_name" id="album_name" required>
+            <input class="border border-light" type="text" placeholder="Album Name" name="album_name" id="album_name" required>
         </div>
         <br />
         <div class="add-album-input-2">

@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = test_input($_POST['password']);
     }
 } 
-
 if (isset($_POST['login'])) {
 
     $email = $_POST['email'];
@@ -46,7 +45,6 @@ if ($user) {
         $loginerror = "User not found"; 
     }
 }
-
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);

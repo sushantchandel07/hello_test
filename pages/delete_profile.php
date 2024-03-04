@@ -2,11 +2,12 @@
 session_start();
 require "../common/database.php";
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    
+    // here it check  if the user is logged in or not
     if (!isset($_SESSION['userid']) || $_SESSION['userid'] == '') {
         header("Location: Login.php");
         exit();
     }
+    // here i add user id through session which start from login.php
     $userid = $_SESSION['userid'];
     $sql = "SELECT profile_image_path FROM userdata WHERE id=$userid";
     $result = mysqli_query($conn, $sql);

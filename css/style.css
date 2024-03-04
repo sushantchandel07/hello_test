@@ -125,7 +125,6 @@ header {
 
 /* stting the car image on index file  */
 img.secondary-img {
-  width: 800px;
   position: absolute;
   top: 20%;
   right: 0;
@@ -433,7 +432,7 @@ h2 {
   border: none;
 }
 .add-album-button button {
-  width: 120px;
+  width: 140px;
   border: none;
   background-color: rgb(42, 147, 233);
   border-radius: 3px;
@@ -598,6 +597,10 @@ h2 {
   .last-right-block {
     margin-top: 90px;
   }
+  .secondary-img{
+    max-width:600px;
+  }
+  
     
 }
 @media screen and (min-width: 1600px) {
@@ -610,6 +613,10 @@ h2 {
   .navbar-contain{
     max-width:1570px;
   }
+  .secondary-img{
+    max-width:800px;
+  }
+  
 }
 
 @media screen and (min-width: 2000px) {

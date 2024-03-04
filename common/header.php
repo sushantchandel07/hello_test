@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,7 +51,7 @@
            ?>
            <?php
           if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
-         echo "<a href ='logout.php'><button class = 'logout'>logout</button> </a>";
+         echo "<a href ='logout.php'><button class = 'logout'>Logout</button> </a>";
           } else {
           echo "<div class='d-flex profile-2'>
           <p class='login font-size border-info p-2 rounded text-white'>

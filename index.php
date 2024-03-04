@@ -28,7 +28,7 @@ session_start();
   <nav class="navbar">
       <div class="container navbar-contain">
       <div class="nav-logo">
-        <a href="../index.php"><img src="photos/logo.png" alt="Logo" /></a>
+        <a href="#"><img src="photos/logo.png" alt="Logo" /></a>
         </div>
 
           
