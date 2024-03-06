@@ -1,9 +1,12 @@
 <?php
 include "../common/header.php";
 require "../common/database.php";
+// adding album  to database
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $userid = $_SESSION['userid'];
+    //  get the data from form
     $albumName = mysqli_real_escape_string($conn, $_POST['album_name']);
+    // upload directory
     $uploadDir = "../uploads/";
     $images = $_FILES['uploadfile'];
     foreach ($images['name'] as $key => $image) {
@@ -17,15 +20,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     exit();
 }
 ?>
-
 <div class="profile-main-section-image">
-    <img src="../photos/Rectangle 619.png " alt="Image" width="100%" />
+    <img src="../photos/Rectangle 619.png " alt="Image" width="100%"/>
 </div>
 <div class="profile-content-1 d-flex justify-content-evenly flex-wrap">
     <div class="profile-para">
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quos
-            maiores quia ullam<br />
+            maiores quia ullam<br/>
             maxime eligendi ipsam aliquam totam at. Consequatur. Lorem ipsum dolor
             sit amet.
         </p>
@@ -33,8 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <div class="prodfile-para">
         <button class="profile-button">
             <a href="profile.php">Profile</a>
-        </button>
-        <button class="profile-button"><a href="gallery_display.php">Images</a></button>
+        </button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="profile-button"><a href="gallery_display.php">Images</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
         <button class="profile-button"><a href="addalbum.php">Album</a></button>
     </div>
 </div>

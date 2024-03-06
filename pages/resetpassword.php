@@ -21,6 +21,21 @@
                 <br />
             </div>
             <div class="form">
+
+            <div class="form-group position-relative">
+                    <label for="password"><span class="important d-none"></span>Email</label>
+                    <input
+
+                        type="text"
+                        class="form-control d-none"
+                        id="email"
+                        placeholder="email"
+                        name="email"
+                        value = "<?php if(isset($_GET['email'])){echo $_GET[ 'email'];}?>"
+                    />
+                    <span class="error"><?php echo $passwordErr; ?></span>
+                    <br>
+                </div>
                 <div class="form-group position-relative">
                     <label for="password"><span class="important"></span>Password</label>
                     <input

@@ -1,4 +1,5 @@
 <?php
+
   error_reporting(E_ALL);
   ini_set('display_errors', 1);
   $fullNameErr = $dobErr = $numberErr =$genderError= $emailErr = $passwordErr = $confirmPasswordErr=$countryErr=$stateErr=$hobbiesErr="";
@@ -41,7 +42,7 @@
     }
 
    // country validation
-   if (empty($_POST["country"]) || $_POST["country"] == "Choose...") {
+   if (empty($_POST["country"]) || $_POST["country"] == "Choose..") {
    $countryErr = "Please select a country.";
    } else {
     $country = test_input($_POST["country"]);
@@ -120,16 +121,17 @@ if (empty($fullNameErr) && empty($dobErr) && empty($numberErr) && empty($emailEr
           
           $hobbies = isset($_POST['hobbies']) ? implode(',', $_POST['hobbies']) : '';
         
-          $sql = "INSERT INTO userdata(name,date_of_birth,gender,phone,email,password,country_id, state_id, hobbies,verify_token) 
+          $sql = "INSERT INTO users(name,date_of_birth,gender,phone,email,password,country_id, state_id, hobbies,verify_token) 
                   VALUES('$name', '$dob', '$gender','$number','$email', '$hashedpassword','$country', '$state', '$hobbies','$verify_token')";
         
-          $checkUserQuery =  "SELECT * FROM userdata WHERE email = '$email'";
+          $checkUserQuery =  "SELECT * FROM users WHERE email = '$email'";
           $result = $conn->query($checkUserQuery);
           if($result->num_rows>0){
             $errormessage="Email already exist";
           }
           elseif($conn->query($sql) === TRUE){
             $successmessage="your Account has been created successfully!<br> Please login to continue.";
+            header("location:Login.php");
           }
           $fullName = $dob = $gender = $number = $email = $password = $confirmPassword = $country=$state="";
         }

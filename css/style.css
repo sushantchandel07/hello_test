@@ -127,7 +127,8 @@ header {
 img.secondary-img {
   position: absolute;
   top: 20%;
-  right: 0;
+  right: 0%;
+  width:700px;
   transform: translate(0, 10%);
   z-index: 1;
 }
@@ -138,7 +139,7 @@ img.secondary-img {
   top: 30%;
   left: 0%;
   width: 50%;
-  padding: 20px;
+  padding-left: 20px;
   z-index: 1;
   color: white;
 }
@@ -445,8 +446,6 @@ h2 {
   width: 500px;
   height: 1000px;
 }
-
-
 /* navbar-responsive */
 @media screen and (max-width: 992px) {
   .navbar .navbar-toggler {
@@ -490,6 +489,12 @@ h2 {
 
 
 @media screen and (max-width: 1000px) {
+  .form-container {
+    margin-left:20px;
+  }
+  .secondary-img{
+    display:none;
+  }
   .section-image-2 {
     display: none;
   }
@@ -543,7 +548,7 @@ h2 {
     align-items: center;
   }
   .content-overlay {
-    margin-top: 80px;
+    margin-top: 40px;
   }
   .first-cards-heading h2 {
     font-size: 30px;
@@ -582,9 +587,7 @@ h2 {
 
 }
 @media screen and (max-width: 1450px) {
-  img .secondary-img  {
-    max-height: 45vh;
-  }
+
   .content-overlay {
     position: absolute;
     top: 10%;
@@ -598,7 +601,10 @@ h2 {
     margin-top: 90px;
   }
   .secondary-img{
-    max-width:600px;
+    max-width:500px;
+  }
+  .header-heading{
+    font-size: 30px;
   }
   
     
@@ -610,18 +616,12 @@ h2 {
   .profile-list {
     padding-left: 40px;
   }
-  .navbar-contain{
-    max-width:1570px;
-  }
-  .secondary-img{
-    max-width:800px;
-  }
+
   
 }
 
 @media screen and (min-width: 2000px) {
   img.secondary-img {
-    width: 1100px;
     position: absolute;
     top: 8%;
     right: 2%;

@@ -1,14 +1,13 @@
 <?php
-session_start(); 
-include "../common/header.php";  
+include "../common/header.php";
 require "../common/database.php";
 $email = $password = "";
 $emailErr = $passwordErr = "";
+$loginerror = $wrongpassword = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-     
     if (empty($_POST["email"])) {
-        $emailErr ="Email is required";
+        $emailErr = "Email is required";
     } elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
         $emailErr = "Invalid email format";
     } else {
@@ -20,35 +19,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $password = test_input($_POST['password']);
     }
-} 
-if (isset($_POST['login'])) {
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    if (!$conn) {
-        die('Connection Failed' . mysqli_error());
-    }
+    if (empty($emailErr) && empty($passwordErr)) {
+        // Check if email exists before attempting to log in
+        $checkEmailQuery = "SELECT * FROM users WHERE email='$email'";
+        $checkEmailResult = mysqli_query($conn, $checkEmailQuery);
+        $emailExists = mysqli_num_rows($checkEmailResult) > 0;
 
-    $sql = "SELECT * FROM userdata WHERE email='$email'";
-    $result = mysqli_query($conn, $sql);
-    $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        if ($emailExists) {
+            // Continue with login validation
+            $user = mysqli_fetch_array($checkEmailResult, MYSQLI_ASSOC);
 
-if ($user) {
-    if(password_verify($password, $user['password'])) {
-        $_SESSION['logged_in'] = true;
-        $_SESSION['userid'] = $user['id'];
-        header("Location: profile.php");
-        }elseif(!empty($_POST['password'])) {
-        $wrongpassword = "Wrong password";
+            if (password_verify($password, $user['password'])) {
+                $_SESSION['logged_in'] = true;
+                $_SESSION['userid'] = $user['id'];
+                header("Location: profile.php");
+            } else {
+                $wrongpassword = "Wrong password";
+            }
+        } else {
+            $loginerror = "User not found";
         }
-    } else {
-        $loginerror = "User not found"; 
     }
 }
+
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
-    $data = htmlspecialchars($data); 
+    $data = htmlspecialchars($data);
     return $data;
 }
 ?>

@@ -1,26 +1,19 @@
-<?php 
-session_start(); 
+<?php  
 require "../common/database.php";
 include "../common/header.php";
-
-$emailError ="";
-if (isset($_POST['submit'])) {
-    $email = $_POST["email"];
-    
-    // Validate email address
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emailError = "Invalid email format.";
-    }elseif(empty($email)){
-      $emailError="Email is required";
-    }
+$emailError = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
+{
+  if (empty($_POST["email"])) 
+  {
+    $emailError = "Email is required";
   }
-if (!isset($_SESSION['status'])) {
-     
-}
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-if(empty($_POST['email'])){
-  $emailError = "Email is Required";
-}
+  else 
+  {
+  $email = $_POST["email"];
+  header("Location: password-reset-code.php");
+  exit();
+  }
 }
 ?>
   <!--main section-->
@@ -34,8 +27,11 @@ if(empty($_POST['email'])){
           <div class="form-heading">
             <h3>Forget-Password</h3>
             <div class="alert alert_success">
-              <h5 class = "text-success"><?php echo $_SESSION["status"] ?></h5>
+            <span class="error text-danger"><?php echo $emailError;?></span>
+              <h5 class = "text-danger"><?php echo $_SESSION["status"] ?></h5>
+              <h5 class = "text-success"><?php echo $_SESSION['statussusccess']?></h5>
               <?php unset($_SESSION['status']); ?>
+              <?php unset($_SESSION['statussusccess']); ?>
             </div>
           </div>
           <br/>
@@ -51,7 +47,7 @@ if(empty($_POST['email'])){
               placeholder="Your E-mail"
               name="email"
             />
-            <span class="error"><?php echo $emailError;?></span>
+            
           </div>
           <br/>
           <div class="form-group">

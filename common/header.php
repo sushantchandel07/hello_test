@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>bootstrapproject</title>
+    <link rel="icon" type="image/x-icon" href="../photos/Group 47.png">
     <link rel="stylesheet" href="../css/style.css" />
     <link
       rel="stylesheet"
@@ -25,7 +26,7 @@ session_start();
     </head>
     <body class="d-flex flex-column min-vh-100">
     <nav class="navbar">
-        <div class="container">
+        <div class="container navbar-contain-header">
          <div class="nav-logo">
         <a href="../index.php"><img src="../photos/logo.png" alt="Logo" /></a>
     </div>
@@ -45,8 +46,6 @@ session_start();
            <i class='fa-solid fa-user pt-2'></i>
            <p class='profile font-size'><a href='profile.php'>Profile</a></p>
            </div>";
-           }else{
-                "";
            }
            ?>
            <?php
@@ -84,30 +83,16 @@ session_start();
           <li class="nav-item">
               <a class="nav-link text-light fs-4 text-opacity-50" href="about.php">About</a>
           </li>
-          <?php
-           if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
-           echo "<div class='profile'>
-           <i class='fa-solid fa-user pt-2'></i>
-           <p class='profile font-size'><a href='profile.php'>Profile</a></p>
-           </div>";
-           }else{
-                "";
-           }
-           ?>
-          <?php
-          if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
-         echo "<a href ='logout.php'><button class = 'logout'>logout</button> </a>";
-          } else {
-          echo "<div class='d-flex profile-2'>
-          <p class='login font-size border-info p-2 rounded text-white'>
-          <a href='Login.php'>Login</a>
-          </p>
-          <p class='signup font-size border-info p-2 bg-primary rounded text-white'>
-          <a href='signup.php'>Signup</a>
-          </p>
-          </div>";
-          }
-        ?>
+          <li class="nav-item">
+              <a class="nav-link text-light fs-4 text-opacity-50" href="pages/profile.php">Profile</a>
+          </li>
+          <li class="nav-item"> 
+              <a class="nav-link text-light fs-4 text-opacity-50" href="pages/Login.php">Login</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-light fs-5 text-opacity-50" href="pages/signup.php">Signup</a>
+          </li>
+      
       </ul>
   </div>
 </div>

@@ -25,7 +25,7 @@ require "../controllers/controller.updateprofile.php";
       <div class="profile-card text-center">
       <div class="profile-card text-center">
      <?php 
-    if (!empty($profile_image)) {
+    if (!empty($profile_image)){
         echo '<img src="' . $profile_image . '" alt="Profile Image" class="profile-image card-img-profile border rounded-circle"
          style="width: 150px; height: 150px;" />';
     } else {
@@ -42,9 +42,9 @@ require "../controllers/controller.updateprofile.php";
     </form>
       <div class="profile-card-body">
           <h3 class="profile-name"><?php echo ucfirst($name)?></h3>
-          <p class="profile-email"><?php echo ucfirst($email) ?></p>
+          <p class="profile-email"><?php echo ucfirst($email)?></p>
           <p class="profile-number"><?php echo $phone ?></p>
-          <a href="update_profile.php"><button class="btn btn-primary">edit profile</button></a>
+          <a href="update_profile.php"><button class="btn btn-primary">Edit profile</button></a>
       </div>
     </div> 
       <div class="d-flex">
@@ -67,7 +67,7 @@ require "../controllers/controller.updateprofile.php";
             <li><?php echo $phone ?></li>
             <li><?php echo ucfirst($email) ?></li>
             <li><?php echo $dob ?></li>
-            <li><?php  echo $hobbies ?></li>
+            <li><?php  echo ucfirst($hobbies) ?></li>
             <li><?php  echo $country ?></li>
             <li><?php  echo $state ?></li>
           </ul>

@@ -26,6 +26,7 @@ require "../controllers/controller.login.php";
                         value="<?php echo htmlspecialchars($email); ?>"
                     />
                     <span class="text-danger"><?php echo $emailErr?></span>
+                    <span class="error"><?php echo $loginerror; ?></span>
                 </div>
                 <br/>
                 <div class="form-group position-relative">
@@ -37,6 +38,7 @@ require "../controllers/controller.login.php";
                         name="password"
                         placeholder="Your Password"
                         name="password"
+                        value="<?php echo htmlspecialchars($password); ?>"
                     />
                     <span class="eye-icon" style="position:absolute; right:10px; top:50%;  cursor:pointer;" onclick="togglePassword('password', 'eye-icon')">
                         <i class="far fa-eye"></i>

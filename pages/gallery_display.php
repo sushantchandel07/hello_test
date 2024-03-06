@@ -33,28 +33,33 @@ $userid = $_SESSION['userid'];
 $sql = "SELECT * FROM albums WHERE user_id = $userid";
 $result = mysqli_query($conn, $sql);
 echo "<div class='container album-images d-flex flex-wrap justify-content-between'>";
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
+if (mysqli_num_rows($result) > 0) 
+{
+    while ($row = mysqli_fetch_assoc($result)) 
+    {
         $albumId = $row['album_id'];
         $albumName = $row['album_name'];
         $sqlImages = "SELECT * FROM albums WHERE album_id = $albumId";
         $resultImages = mysqli_query($conn, $sqlImages);
        
-        while ($imageRow = mysqli_fetch_assoc($resultImages)) {
-            $imageId = $imageRow['album_id'];
-            $imagePath = $imageRow['image_path'];
-            echo "<div class='d-flex flex-column  m-2 '>
-            <img src='$imagePath' class='imagestyle' style='width: 350px; height: 350px;'  alt='Album Image' />
-            <h4>$albumName</h4>
-            <form method='post' action='../controllers/delete_image.php'>
-            <input type='hidden' name='image_id' value='$imageId' />
-            <button type='submit' id='deletealbum' class='btn btn-danger'>Delete</button>
-            </form>
-            </div>";
-          }     
+        while ($imageRow = mysqli_fetch_assoc($resultImages)) 
+        {
+          $imageId = $imageRow['album_id'];
+          $imagePath = $imageRow['image_path'];
+          echo "<div class='d-flex flex-column  m-2 '>
+          <img src='$imagePath' class='imagestyle' style='width: 350px; height: 350px;'  alt='Album Image' />
+          <h4>$albumName</h4>
+          <form method='post' action='delete_image.php'>
+          <input type='hidden' name='image_id' value='$imageId' />
+          <button type='submit' id='deletealbum' class='btn btn-danger'>Delete</button>
+          </form>
+          </div>";
+        }     
        
     }
-} else {
+} 
+else 
+{
     echo "<p>No albums found.</p>";
 }
 echo "</div>";
@@ -62,13 +67,16 @@ mysqli_close($conn);
 ?>
 <?php include "../common/footer.php" ?>
 <script>
-    document.querySelectorAll(".btn-danger").forEach(button => {
-        button.addEventListener("click", function(event) {
-            event.preventDefault(); // Prevent form submission
-            if (confirm("Are you sure you want to delete this image?")) {
-                // If confirmed, submit the form
-                this.closest("form").submit();
-            }
-        });
+  document.querySelectorAll(".btn-danger").forEach(button => 
+  {
+      button.addEventListener("click", function(event) 
+      {
+      event.preventDefault(); // Prevent form submission
+      if (confirm("Are you sure you want to delete this image?")) 
+      {
+        // If confirmed, submit the form
+        this.closest("form").submit();
+      }
     });
+  });
 </script>
