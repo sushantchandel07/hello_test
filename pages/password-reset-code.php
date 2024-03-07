@@ -121,7 +121,7 @@ if (isset($_POST['password_update'])) {
     } 
     else 
     {
-            $_SESSION['status'] = "Invalid token or email";
+            $_SESSION['status'] = "Invalid email";
             header("Location: resetpassword.php");
             exit(0);
     }

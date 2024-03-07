@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             sit amet.
         </p>
     </div>
-    <div class="prodfile-para">
+    <div class="prodfile-para flex-wrap">
         <button class="profile-button">
             <a href="profile.php">Profile</a>
         </button>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     </div>
 </div>
 <hr />
-<div class="add-album border">
+<div class="add-album">
     <!-- Album creation form -->
     <form action="" method="post" enctype="multipart/form-data">
         <div class="add-album-input-2">

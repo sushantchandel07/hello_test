@@ -26,7 +26,7 @@ require "../controllers/controller.login.php";
                         value="<?php echo htmlspecialchars($email); ?>"
                     />
                     <span class="text-danger"><?php echo $emailErr?></span>
-                    <span class="error"><?php echo $loginerror; ?></span>
+                    <span class="error"><?php echo  $loginerror; ?></span>
                 </div>
                 <br/>
                 <div class="form-group position-relative">

@@ -24,8 +24,6 @@ session_start();
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-  
-
   <nav class="navbar">
       <div class="container navbar-contain">
       <div class="nav-logo">
@@ -91,28 +89,15 @@ session_start();
           <li class="nav-item">
               <a class="nav-link text-light fs-4 text-opacity-50" href="pages/about.php">About</a>
           </li>
-          <?php
-           if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
-           echo "<div class='profile'>
-           <i class='fa-solid fa-user pt-2'></i>
-           <li class='profile font-size'><a href='pages/profile.php'>Profile</a></li>
-           </div>";
-           }
-           ?>
-           <?php
-          if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
-         echo "<a href ='pages/logout.php'><button class = 'logout'>logout</button> </a>";
-          } else {
-          echo "<div class='d-flex profile-2'>
-          <p class='login font-size border-info p-2 rounded text-white'>
-          <a href='pages/Login.php'>Login</a>
-          </p>
-          <p class='signup font-size border-info p-2 bg-primary rounded text-white'>
-          <a href='pages/signup.php'>Signup</a>
-          </p>
-          </div>";
-          }
-        ?>
+          <li class="nav-item">
+              <a class="nav-link text-light fs-4 text-opacity-50" href="pages/profile.php">Profile</a>
+          </li>
+           <li class="nav-item"> 
+              <a class="nav-link text-light fs-4 text-opacity-50" href="pages/Login.php">Login</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link text-light fs-5 text-opacity-50" href="pages/signup.php">Signup</a>
+          </li>
       </ul>
   </div>
 </div>

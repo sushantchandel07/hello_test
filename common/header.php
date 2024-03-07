@@ -84,13 +84,13 @@ session_start();
               <a class="nav-link text-light fs-4 text-opacity-50" href="about.php">About</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link text-light fs-4 text-opacity-50" href="pages/profile.php">Profile</a>
+              <a class="nav-link text-light fs-4 text-opacity-50" href="../pages/profile.php">Profile</a>
           </li>
           <li class="nav-item"> 
-              <a class="nav-link text-light fs-4 text-opacity-50" href="pages/Login.php">Login</a>
+              <a class="nav-link text-light fs-4 text-opacity-50" href="../pages/Login.php">Login</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link text-light fs-5 text-opacity-50" href="pages/signup.php">Signup</a>
+              <a class="nav-link text-light fs-5 text-opacity-50" href="../pages/signup.php">Signup</a>
           </li>
       
       </ul>
