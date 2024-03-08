@@ -68,9 +68,7 @@
   text-align: center;
 }
 
-.navbar .nav-side-list {
-  margin-right: 90px;
-}
+
 /* login / logout button */
 .login a{
   color: white;
@@ -452,11 +450,17 @@ h2 {
   float: right;
   background-color: rgb(31, 150, 248);
   color:white;
-  padding:10px;
-  font-weight: 500;
+  padding: 8px;
   border:none;
-  border-radius: 3px;
+  border-radius: 2px;
+  font-size: 20px;
 }
+
+  
+  
+  
+  
+ 
 
 
 

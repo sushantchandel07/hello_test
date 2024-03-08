@@ -4,11 +4,11 @@
     <div class="album-section-image">
       <img src="../photos/Rectangle 619.png " alt="Image" width="100%" />
     </div>
-    <div class="container profile-content-1 d-flex justify-content-evenly flex-wrap">
+    <div class="container profile-content-1 d-flex justify-content-between flex-wrap">
       <div class="profile-para">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quos
-          maiores quia ullam<br />
+          maiores quia ullam<br/>
           maxime eligendi ipsam aliquam totam at. Consequatur. Lorem ipsum dolor
           sit amet.
         </p>
@@ -24,9 +24,8 @@
     </div> 
 <hr/>
 <div class="container">
-  <button class=" create-album" style="float: right; background-color: rgb(31, 150, 248);">Create album</button>
+<a href="addalbum.php"><button class=" create-album" >Create album</button></a>
 </div>
-
 <?php
 require "../common/database.php";
 if (!isset($_SESSION['userid']) || empty($_SESSION['userid'])){
@@ -36,7 +35,7 @@ if (!isset($_SESSION['userid']) || empty($_SESSION['userid'])){
 $userid = $_SESSION['userid'];
 $sql = "SELECT * FROM albums WHERE user_id = $userid";
 $result = mysqli_query($conn, $sql);
-echo "<div class='container album-images d-flex flex-wrap justify-content-between'>";
+echo "<div class='container album-images d-flex flex-wrap justify-content-between pt-5'>";
 if (mysqli_num_rows($result) > 0) 
 {
     while ($row = mysqli_fetch_assoc($result)) 

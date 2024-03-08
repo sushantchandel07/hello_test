@@ -4,7 +4,7 @@ require "../controllers/controller.updateprofile.php";
 <div class="profile-main-section-image">
       <img src="../photos/Rectangle 619.png " alt="Image" width="100%" />
     </div>
-    <div class="profile-content-1 d-flex justify-content-evenly flex-wrap">
+    <div class=" container profile-content-1 d-flex justify-content-between flex-wrap">
       <div class="profile-para">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quos
@@ -65,7 +65,7 @@ require "../controllers/controller.updateprofile.php";
             <li><?php echo ucfirst($name)?></li>
             <li><?php echo $gender ?></li>
             <li><?php echo $phone ?></li>
-            <li><?php echo ucfirst($email) ?></li>
+            <li><?php echo  $email ?></li>
             <li><?php echo $dob ?></li>
             <li><?php  echo ucfirst($hobbies) ?></li>
             <li><?php  echo $country ?></li>

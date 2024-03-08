@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 <div class="profile-main-section-image">
     <img src="../photos/Rectangle 619.png " alt="Image" width="100%"/>
 </div>
-<div class="profile-content-1 d-flex justify-content-evenly flex-wrap">
+<div class=" container profile-content-1 d-flex justify-content-between flex-wrap">
     <div class="profile-para">
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quos
@@ -33,20 +33,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         </p>
     </div>
     <div class="prodfile-para flex-wrap">
-        <button class="profile-button">
-            <a href="profile.php">Profile</a>
-        </button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button class="profile-button"><a href="gallery_display.php">Images</a></button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button class="profile-button"><a href="addalbum.php">Album</a></button>
+    <a href="profile.php"> <button class="profile-button">
+            Profile
+        </button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="addalbum.php"><button class="profile-button">Album</button></a>
     </div>
 </div>
 <hr />
-<div class="add-album">
+<div class=" container add-album border">
     <!-- Album creation form -->
     <form action="" method="post" enctype="multipart/form-data">
         <div class="add-album-input-2">
             <label for="album_name">Album Name:</label>
-            <input class="border border-light" type="text" placeholder="Album Name" name="album_name" id="album_name" required>
+            <input class=" border border-light" type="text" placeholder="Album Name" name="album_name" id="album_name" required>
         </div>
         <br />
         <div class="add-album-input-2">
