@@ -48,7 +48,7 @@ require "../controllers/controller.login.php";
                 </div>
                 <br />
                 <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="rememberMe" />
+                    <input type="checkbox" class="form-check-input" id="rememberMe"/>
                     <div class="d-flex justify-content-between">
                         <label class="form-check-label" for="rememberMe"
                         >Remember me</label

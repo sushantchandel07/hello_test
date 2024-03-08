@@ -17,7 +17,7 @@
       <a href="profile.php"><button class="profile-button m-2">
           Profile
         </button></a>
-        <a href="addalbum.php"><button class="profile-button m-2">
+        <a href="gallery_display.php"><button class="profile-button m-2">
          Album
         </button></a>
       </div>
@@ -58,9 +58,8 @@ if (mysqli_num_rows($result) > 0)
           </form>
           </div>";
         }     
-       
     }
-} 
+}
 else 
 {
     echo "<p>No albums found.</p>";

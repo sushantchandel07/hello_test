@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     <div class="prodfile-para flex-wrap">
     <a href="profile.php"> <button class="profile-button">
             Profile
-        </button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+        </button>&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="addalbum.php"><button class="profile-button">Album</button></a>
     </div>
 </div>

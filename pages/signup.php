@@ -150,7 +150,7 @@ include "../common/header.php" ;
                 />
               <span class="error"><?php echo $confirmPasswordErr; ?></span>
             </div>
-            <br />
+            <br/>
             <label>Hobbies</label>
             <hr style="width:70px">    
             <div class="form-group d-flex flex-wrap">

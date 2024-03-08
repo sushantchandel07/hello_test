@@ -1,5 +1,6 @@
 <?php
 require "../controllers/controller.updateprofile.php";
+
 ?>
 <div class="profile-main-section-image">
       <img src="../photos/Rectangle 619.png " alt="Image" width="100%" />
