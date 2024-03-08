@@ -17,7 +17,7 @@ require "../controllers/controller.updateprofile.php";
       <a href="profile.php"><button class="profile-button m-2">
           Profile</button></a>
          
-          <a href="addalbum.php"><button class="profile-button m-2">Album</button></a>
+          <a href="gallery_display.php"><button class="profile-button m-2">Album</button></a>
       </div>
     </div>
     <hr />

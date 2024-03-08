@@ -172,7 +172,7 @@ include "../common/header.php" ;
         <label class="form-check-label">Eating</label>
     </div> 
 </div>
-
+   <span class="error"><?php echo $hobbiesErr; ?></span>
        
         <br />
             <div class="form-group">

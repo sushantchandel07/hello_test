@@ -4,7 +4,7 @@
     <div class="album-section-image">
       <img src="../photos/Rectangle 619.png " alt="Image" width="100%" />
     </div>
-    <div class="profile-content-1 d-flex justify-content-evenly flex-wrap">
+    <div class="container profile-content-1 d-flex justify-content-evenly flex-wrap">
       <div class="profile-para">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quos
@@ -23,6 +23,10 @@
       </div>
     </div> 
 <hr/>
+<div class="container">
+  <button class=" create-album" style="float: right; background-color: rgb(31, 150, 248);">Create album</button>
+</div>
+
 <?php
 require "../common/database.php";
 if (!isset($_SESSION['userid']) || empty($_SESSION['userid'])){

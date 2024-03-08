@@ -446,6 +446,21 @@ h2 {
   width: 500px;
   height: 1000px;
 }
+
+/* here i add create album image style */
+.create-album{
+  float: right;
+  background-color: rgb(31, 150, 248);
+  color:white;
+  padding:10px;
+  font-weight: 500;
+  border:none;
+  border-radius: 3px;
+}
+
+
+
+
 /* navbar-responsive */
 @media screen and (max-width: 992px) {
   .navbar .navbar-toggler {

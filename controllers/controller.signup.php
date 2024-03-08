@@ -64,6 +64,13 @@
       $email = test_input($_POST["email"]);
     }
 
+    // Hobbies validation
+    if (empty($_POST['hobbies']) || count($_POST['hobbies']) == 0) {
+    $hobbiesErr = "Please select at least one hobby.";
+    } else {
+    $hobbies = $_POST['hobbies'];
+    }
+
     // password Validation
     if (empty($_POST["password"])) {
       $passwordErr = "Password is required";
@@ -102,9 +109,9 @@
 }
 
 // here i bind everything that without filling all the fields and without clearing the all error form can not be submitted
-if (empty($fullNameErr) && empty($dobErr) && empty($numberErr) && empty($emailErr) && empty($passwordErr)&& empty($confirmPasswordErr)&& empty($genderError) && empty($countryErr)&&
+if (empty($fullNameErr) && empty($dobErr) && empty($numberErr) && empty($emailErr) && empty($passwordErr)&& empty($confirmPasswordErr)&& empty($genderError) && empty($countryErr)&&empty($hobbiesErr) &&
     !empty($fullName) && !empty($dob) && !empty($number) && !empty($email) && !empty($password) && !empty($confirmPassword)
-    && !empty($gender)&& !empty($country)&& !empty($state) ) {
+    && !empty($gender)&& !empty($country)&& !empty($state) && !empty($hobbies)) {
         
         if(isset($_POST[ 'submit'])){
           $name= $_POST['name'];
