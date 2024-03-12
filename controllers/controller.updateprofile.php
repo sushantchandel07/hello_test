@@ -11,7 +11,7 @@
     $sql = "SELECT * FROM users WHERE id=$userid";
     $result = mysqli_query($conn, $sql);
     $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    // here i am select data from country
+    // here i am select data from country and state
     $sqlCountryList = "SELECT * FROM country";
     $countryListResult = mysqli_query($conn, $sqlCountryList);
     $sqlStateList = "SELECT * FROM state";
@@ -89,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['upload_image'])){
                JOIN state ON users.state_id = state.sid
                WHERE users.id = $userid";
     $countryresult = mysqli_query($conn, $sqlcountry);
-if ($countryuser = mysqli_fetch_assoc($countryresult)) {
+if ($countryuser = mysqli_fetch_assoc($countryresult)){
     $country = $countryuser['cname']; 
     $state = $countryuser['sname'];
 }

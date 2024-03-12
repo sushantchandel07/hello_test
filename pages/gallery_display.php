@@ -48,7 +48,7 @@ if(mysqli_num_rows($result) > 0){
     <div class="modal" id="imageModal_<?php echo $album_id; ?>">
     <span class="close" onclick="closeModal(<?php echo $album_id; ?>)">&times;</span>
     <div class="modal-content-1">
-    <?php while ($image = mysqli_fetch_assoc($result_images)) { ?>
+    <?php  while($image = mysqli_fetch_assoc($result_images)) { ?>
     <div class="image">
     <img src="<?php echo $image['filepath']; ?>" alt="Album Image">
     </div>
@@ -68,6 +68,9 @@ if(mysqli_num_rows($result) > 0){
     if(confirmation){
             // Redirect to the delete album page
         window.location.href = "delete_image.php?album_id=" + album_id;
+    }else {
+       
+        window.location.href = "gallery_display.php";
     }
     }
     function openModal(album_id) {

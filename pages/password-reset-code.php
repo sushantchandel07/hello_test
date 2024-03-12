@@ -12,7 +12,7 @@ use PHPMailer\PHPMailer\Exception;
 require '../vendor/autoload.php';
 
 function send_password_reset($get_name ,$get_email , $token){
-
+        
     $mail = new PHPMailer(true);
 
     $mail->isSMTP();                                                               
@@ -78,7 +78,6 @@ if(isset($_POST['password_reset_link'])) {
         exit(0);
     }
 }
-// 
 if (isset($_POST['password_update'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $new_password = mysqli_real_escape_string($conn, $_POST['new_password']);
