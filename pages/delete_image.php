@@ -1,40 +1,50 @@
 <?php
-session_start();
+ error_reporting(E_ALL);
+ ini_set('display_errors', 1);
 require "../common/database.php";
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['userid']) && !empty($_SESSION['userid'])) {
-    $userId = $_SESSION['userid'];
-    $imageId = $_POST['image_id'];
 
-    // Retrieve image path before deleting from the database
-    $getImagePathQuery = "SELECT image_path FROM albums WHERE user_id = $userId AND album_id = $imageId";
-    $imagePathResult = mysqli_query($conn, $getImagePathQuery);
+if (isset($_GET['album_id'])) {
+    $album_id = $_GET['album_id'];
 
-    if ($imagePathResult && mysqli_num_rows($imagePathResult) > 0) {
-        $imagePathRow = mysqli_fetch_assoc($imagePathResult);
-        $imagePath = $imagePathRow['image_path'];
+    // Retrieve image filenames associated with the album
+    $getImagesQuery = "SELECT `filepath` FROM `images` WHERE `album_id`='$album_id'";
+    $getImagesResult = mysqli_query($conn, $getImagesQuery);
 
-        // Delete the image file from the upload folder
-        if (file_exists($imagePath)) {
-            unlink($imagePath);
+    if ($getImagesResult) {
+        while ($row = mysqli_fetch_assoc($getImagesResult)) {
+            $filename = $row['filepath'];
+            $filePath = "../uploads/" . $filename;
+            // Delete the image file from the folder 
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            } else {
+                echo "Warning: Image file not found: $filename\n";
+            }
         }
-    }
+        
+        // Delete images associated with the album from the 'images' table
+        $deleteImagesQuery = "DELETE FROM `images` WHERE `album_id`='$album_id'";
+        $deleteImagesResult = mysqli_query($conn, $deleteImagesQuery);
 
-    // Construct the DELETE query
-    $sql = "DELETE FROM albums WHERE user_id = $userId AND album_id = $imageId";
+        // Delete the album from the 'album2' table
+        $deleteAlbumQuery = "DELETE FROM `album2` WHERE `id`='$album_id'";
+        $deleteAlbumResult = mysqli_query($conn, $deleteAlbumQuery);
 
-    // Execute the DELETE query
-    if (mysqli_query($conn, $sql)) {
-        // Redirect to the gallery display page after successful deletion
-        header("Location: gallery_display.php");
-        exit();
+        if ($deleteImagesResult && $deleteAlbumResult){
+            // Deletion successful, redirect the user to a relevant page
+            header("Location: gallery_display.php");
+            exit();
+        } else {
+            // Handle deletion failure
+            echo "Error deleting album. Please try again.";
+        }
     } else {
-        //we Handle errors if the DELETE query fails
-        echo "Error deleting image: " . mysqli_error($conn);
+        // Handle error retrieving image filenames
+        echo "Error retrieving image filenames. Please try again.";
     }
 } else {
-    // Redirect to the login page if the user is not logged in or if the request is not a POST request
-    header("Location: Login.php");
-    exit();
+    // Handle case when 'album_id' parameter is not set
+    echo "Album ID is not set!";
 }
 
 // Close the database connection
