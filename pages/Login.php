@@ -6,6 +6,7 @@ require "../controllers/controller.login.php";
         <img class="section-image-1" src="../photos/Illustration.png" />
     </div>
     <form method="POST">
+        <?php echo $successmessage?>
         <div class="form-container">
             <div class="form heading">
                 <div class="form-heading">

@@ -1,35 +1,33 @@
 <?php
-  error_reporting(E_ALL);
-  ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include "../common/header.php";
 require "../common/database.php";
 if(isset($_POST["submit"])) {
     $album_name = $_POST["album_name"];
     $user_id = $_SESSION['userid'];
-    $query = "INSERT INTO `album2`(`user_id`, `album_title`) VALUES ('$user_id','$album_name')";
-    mysqli_query($conn, $query);
-    $album_id = mysqli_insert_id($conn); // Get the last inserted ID
-    $firstImage = true; 
-    $targetdir = "../uploads/";
-    foreach ($_FILES['uploadfile']['tmp_name'] as $key => $tmp_name) {
-        $file_name = $_FILES['uploadfile']['name'][$key];
-        $file_tmp = $_FILES['uploadfile']['tmp_name'][$key];
-        $targetfile = $targetdir . $file_name;
-        move_uploaded_file($file_tmp, $targetfile);
-        $filepath = $targetfile;
-        // Insert image into images table
-        $query = "INSERT INTO `images`(`album_id`, `filepath`) VALUES ('$album_id','$filepath')";
-        mysqli_query($conn, $query);
-        // If it's the first image, set it as the album cover image
-        if ($firstImage) {
-        $query = "UPDATE `album2` SET `cover_image`='$filepath' WHERE `id`='$album_id'";
-        mysqli_query($conn, $query);
-        $firstImage = false;
+    // Handle image uploads
+    if(isset($_FILES['uploadfile']['name']) && !empty($_FILES['uploadfile']['name'][0])) {
+        $file_name = $_FILES['uploadfile']['name'][0];
+        $file_tmp = $_FILES['uploadfile']['tmp_name'][0];
+        $file_type = $_FILES['uploadfile']['type'][0];
+        // Specify the directory to which the file will be uploaded
+        $target_dir = "../uploads/";
+        $target_file = $target_dir . basename($file_name);
+        // Move the uploaded file to the specified directory
+        if(move_uploaded_file($file_tmp, $target_file)) {
+            // Insert album information into the database
+            $query = "INSERT INTO `album2`(`user_id`, `album_title`, `cover_image`) VALUES ('$user_id', '$album_name', '$target_file')";
+            mysqli_query($conn, $query);
+            echo "Album created successfully.";
+            header("Location: gallerydisplay.php"); // Redirect to gallery display page
+            exit();
+        } else {
+            echo "Failed to upload file.";
         }
+    } else {
+        echo "Please upload at least one image.";
     }
-    // Redirect to gallery_display.php after the upload process is complete
-    header("Location: gallery_display.php?album_id=$album_id");
-    exit(); // Ensure code is not executed after redirection
 }
 ?>
 <div class="profile-main-section-image">
@@ -48,10 +46,13 @@ if(isset($_POST["submit"])) {
     <a href="profile.php"> <button class="profile-button">
             Profile
         </button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="gallery_display.php"><button class="profile-button">Album</button></a>
+        <a href="gallerydisplay.php"><button class="profile-button">Album</button></a>
     </div>
 </div>
 <hr />
+<div class="container">
+    <a href="addalbum.php"><button class="create-album">Create album</button></a>
+</div>
 <div class=" container add-album border">
     <!-- Album creation form -->
     <form action="" method="post" enctype="multipart/form-data">
